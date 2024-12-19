@@ -1,0 +1,18 @@
+- route:
+    id: edi-to-xml
+    from:
+      uri: timer
+      parameters:
+        period: "3000"
+        timerName: yaml
+      steps:
+        - setBody:
+            expression:
+              constant:
+                expression: resource:classpath:edi-to-xml-input-message.edi
+        - to:
+            id: to-4240
+            uri: smooks
+            parameters:
+              smooksConfig: edi-to-xml-smooks-config.xml
+        - log: ${body}
