@@ -8,8 +8,8 @@ The purpose of this PoC is to demonstrate reading and writing X12 837 EDI messag
 - [x] Verify both edi-to-xml and xml-to-edi works
 - [x] Copy [Smooks example files](01.camel-smooks-edi-xml-example) into [working dir](02.x12-837) and rename them to represent X12 837 usecase
 - [x] Start making hands dirty - replace the example input payloads with X12 837 (input for 837-to-xml, output for xml-to-837)
-- [ ] Create the example XML (output for 837-to-xml, input for xml-to-837) which represents the example X12 837 above
-- [ ] Update DFDL schema files to reflect those 837 and XML formats
+- [ ] Create  [DFDL schema file](02.x12-837/837-to-xml-order-mapping.dfdl.xsd) to convert 837 to XML
+- [ ] Execute 837-to-xml and save generated XML as [xml-to-837-input-message.xml](02.x12-837/xml-to-837-input-message.xml)
 - [ ] Make sure it runs and prints the log as expected
 - [ ] Add DataMapper, so not only just convert between X12 837 and XML, but also demonstrate to read/write from/to a different data shape
 - [ ] Verify it runs and prints the log as expected
