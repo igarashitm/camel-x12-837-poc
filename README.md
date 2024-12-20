@@ -19,3 +19,5 @@ The purpose of this PoC is to demonstrate reading and writing X12 837 EDI messag
 Just a reference, copied the Smooks example in and wrapped into camel route. It is using EDIFACT common object. A starting point.
 2. [02.x12-837](02.x12-837)
 A working directory. Using [above](01.camel-smooks-edi-xml-example) as a template, create 2 camel routes to demonstrate to read/write X12 837 message, as well as performing data mapping on it.
+The example input message is created from following example, wrapped with dummy `ISA`, `GS`, `GE` and `IEA` segments.
+    - [X12 837 - Health Care Claim: Professional - Commercial Health Insurance](https://x12.org/examples/005010x222/example-01-commercial-health-insurance)
