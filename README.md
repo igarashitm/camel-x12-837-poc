@@ -5,7 +5,7 @@ The purpose of this PoC is to demonstrate reading and writing X12 837 EDI messag
 ## TODO
 
 - [x] Take Smooks edi-to-xml and xml-to-edi examples in to [](01.camel-smooks-edi-xml-example) and wrap into camel routes
-- [ ] Verify both edi-to-xml and xml-to-edi works
+- [x] Verify both edi-to-xml and xml-to-edi works
 - [ ] Copy [Smooks example files](01.camel-smooks-edi-xml-example) into [working dir](02.x12-837) and rename them to represent X12 837 usecase
 - [ ] Start making hands dirty - replace the example input payloads with X12 837
 - [ ] And update DFDL schema files to handle X12 837 format
