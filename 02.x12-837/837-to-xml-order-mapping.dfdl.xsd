@@ -15,42 +15,121 @@
                 <xs:element name="Header">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="ISA" type="ISAType"/>
-                            <xs:element name="GS" type="GSType"/>
-                            <xs:element name="ST" type="STType"/>
+                            <xs:element name="ISA" type="ISAType" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="GS" type="GSType" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="ST" type="STType" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="BHT" type="BHTType" minOccurs="1" maxOccurs="1"/>
+                            <xs:element name="REF" type="REFType" minOccurs="0" maxOccurs="3"/>
+                            <xs:element name="Loop1000" minOccurs="0" maxOccurs="10">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="NM1" minOccurs="1" maxOccurs="1" type="NM1Type"/>
+                                        <xs:element name="N2" minOccurs="0" maxOccurs="2" type="N2Type"/>
+                                        <xs:element name="N3" minOccurs="0" maxOccurs="2" type="N3Type"/>
+                                        <xs:element name="N4" minOccurs="0" maxOccurs="1" type="N4Type"/>
+                                        <xs:element name="REF" minOccurs="0" maxOccurs="2" type="REFType"/>
+                                        <xs:element name="PER" minOccurs="0" maxOccurs="2" type="PERType"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
 
                 <!-- Claim Information -->
-                <xs:element name="ClaimInfo">
+                <xs:element name="Loop2000" minOccurs="1" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="BHT" type="BHTType"/>
-                            <xs:element name="NM1" maxOccurs="unbounded" type="NM1Type"/>
-                            <xs:element name="PER" maxOccurs="unbounded" type="PERType"/>
-                            <xs:element name="HLs">
+                            <xs:element name="HL" minOccurs="1" maxOccurs="1" type="HLType"/>
+                            <xs:element name="PRV" minOccurs="0" maxOccurs="1" type="PRVType"/>
+                            <xs:element name="SBR" minOccurs="0" maxOccurs="1" type="SBRType"/>
+                            <xs:element name="PAT" minOccurs="0" maxOccurs="1" type="PATType"/>
+                            <xs:element name="DTP" minOccurs="0" maxOccurs="1" type="DTPType"/>
+                            <xs:element name="CUR" minOccurs="0" maxOccurs="1" type="CURType"/>
+                            <xs:element name="Loop2010" minOccurs="0" maxOccurs="10">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="HL" maxOccurs="unbounded" type="HLType"/>
+                                        <xs:element name="NM1" minOccurs="1" maxOccurs="1" type="NM1Type"/>
+                                        <xs:element name="N2" minOccurs="0" maxOccurs="2" type="N2Type"/>
+                                        <xs:element name="N3" minOccurs="0" maxOccurs="2" type="N3Type"/>
+                                        <xs:element name="N4" minOccurs="0" maxOccurs="1" type="N4Type"/>
+                                        <xs:element name="DMG" minOccurs="0" maxOccurs="1" type="DMGType"/>
+                                        <xs:element name="REF" minOccurs="0" maxOccurs="20" type="REFType"/>
+                                        <xs:element name="PER" minOccurs="0" maxOccurs="2" type="PERType"/>
+                                        <xs:element name="LUI" minOccurs="0" maxOccurs="1" type="LUIType"/>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="SBR" type="SBRType"/>
-                            <xs:element name="CLM" type="CLMType"/>
-                            <xs:element name="LineItems">
-                                <xs:complexType>
-                                    <xs:sequence>
-                                        <xs:element name="LineItem" maxOccurs="unbounded" type="LineItemType"/>
-                                    </xs:sequence>
-                                </xs:complexType>
+                            <xs:element name="Loop2300" minOccurs="0" maxOccurs="10">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="CLM" minOccurs="1" maxOccurs="1" type="CLMType"/>
+                                    <xs:element name="DTP" minOccurs="0" maxOccurs="150" type="DTPType"/>
+                                    <xs:element name="CL1" minOccurs="0" maxOccurs="1" type="CL1Type"/>
+                                    <xs:element name="DN1" minOccurs="0" maxOccurs="1" type="DN1Type"/>
+                                    <xs:element name="DN2" minOccurs="0" maxOccurs="35" type="DN2Type"/>
+                                    <xs:element name="PWK" minOccurs="0" maxOccurs="10" type="PWKType"/>
+                                    <xs:element name="CN1" minOccurs="0" maxOccurs="1" type="CN1Type"/>
+                                    <xs:element name="DSB" minOccurs="0" maxOccurs="1" type="DSBType"/>
+                                    <xs:element name="UR" minOccurs="0" maxOccurs="1" type="URType"/>
+                                    <xs:element name="AMT" minOccurs="0" maxOccurs="40" type="AMTType"/>
+                                    <xs:element name="REF" minOccurs="0" maxOccurs="30" type="REFType"/>
+                                    <xs:element name="K3" minOccurs="0" maxOccurs="10" type="K3Type"/>
+                                    <xs:element name="NTE" minOccurs="0" maxOccurs="20" type="NTEType"/>
+                                    <xs:element name="CR1" minOccurs="0" maxOccurs="1" type="CR1Type"/>
+                                    <xs:element name="CR2" minOccurs="0" maxOccurs="1" type="CR2Type"/>
+                                    <xs:element name="CR3" minOccurs="0" maxOccurs="1" type="CR3Type"/>
+                                    <xs:element name="CR4" minOccurs="0" maxOccurs="3" type="CR4Type"/>
+                                    <xs:element name="CR5" minOccurs="0" maxOccurs="1" type="CR5Type"/>
+                                    <xs:element name="CR6" minOccurs="0" maxOccurs="1" type="CR6Type"/>
+                                    <xs:element name="CR8" minOccurs="0" maxOccurs="9" type="CR8Type"/>
+                                    <xs:element name="CRC" minOccurs="0" maxOccurs="100" type="CRCType"/>
+                                    <xs:element name="HI" minOccurs="0" maxOccurs="25" type="HIType"/>
+                                    <xs:element name="QTY" minOccurs="0" maxOccurs="10" type="QTYType"/>
+                                    <xs:element name="HCP" minOccurs="0" maxOccurs="1" type="HCPType"/>
+                                    <xs:element name="Loop2305" minOccurs="0" maxOccurs="6">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="CR7" minOccurs="1" maxOccurs="1" type="CR7Type"/>
+                                                <xs:element name="HSD" minOccurs="0" maxOccurs="12" type="HSDType"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="Loop2310" minOccurs="0" maxOccurs="6">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="NM1" minOccurs="1" maxOccurs="1" type="NM1Type"/>
+                                                <xs:element name="PRV" minOccurs="0" maxOccurs="1" type="PRVType"/>
+                                                <xs:element name="N2" minOccurs="0" maxOccurs="2" type="N2Type"/>
+                                                <xs:element name="N3" minOccurs="0" maxOccurs="2" type="N3Type"/>
+                                                <xs:element name="N4" minOccurs="0" maxOccurs="1" type="N4Type"/>
+                                                <xs:element name="REF" minOccurs="0" maxOccurs="20" type="REFType"/>
+                                                <xs:element name="PER" minOccurs="0" maxOccurs="2" type="PERType"/>
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+                                    <xs:element name="Loop2320" minOccurs="0" maxOccurs="6">
+                                        <xs:complexType>
+                                            <xs:sequence>
+                                                <xs:element name="SBR" minOccurs="1" maxOccurs="1" type="SBRType"/>
+                                                <xs:element name="CAS" minOccurs="0" maxOccurs="99" type="CASType"/>
+                                                <xs:element name="RAS" minOccurs="0" maxOccurs="99" type="RASType"/>
+                                                <xs:element name="AMT" minOccurs="0" maxOccurs="15" type="AMTType"/>
+                                                <!-- bookmark Tomo --> 
+
+                                            </xs:sequence>
+                                        </xs:complexType>
+                                    </xs:element>
+
+                                </xs:sequence>
+                            </xs:complexType>
                             </xs:element>
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
 
-                <!-- Footer -->
-                <xs:element name="Footer">
+                <!-- Trailer -->
+                <xs:element name="Trailer">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="SE" type="SEType"/>
@@ -64,6 +143,15 @@
     </xs:element>
 
     <!-- Segment Types -->
+    <xs:complexType name="BHTType"></xs:complexType>
+    <xs:complexType name="CLMType"></xs:complexType>
+    <xs:complexType name="CL1Type"></xs:complexType>
+    <xs:complexType name="CURType"></xs:complexType>
+    <xs:complexType name="DMGType"></xs:complexType>
+    <xs:complexType name="DTPType"></xs:complexType>
+    <xs:complexType name="GEType"></xs:complexType>
+    <xs:complexType name="GSType"></xs:complexType>
+    <xs:complexType name="HLType"></xs:complexType>
     <xs:complexType name="ISAType">
         <xs:sequence>
             <xs:element name="ISA01" type="xs:string"/>
@@ -73,19 +161,18 @@
             <!-- Additional ISA elements -->
         </xs:sequence>
     </xs:complexType>
-
-    <!-- Define other segments (GS, ST, BHT, etc.) in a similar way -->
-    <xs:complexType name="GSType"></xs:complexType>
-    <xs:complexType name="STType"></xs:complexType>
-    <xs:complexType name="BHTType"></xs:complexType>
-    <xs:complexType name="NM1Type"></xs:complexType>
-    <xs:complexType name="PERType"></xs:complexType>
-    <xs:complexType name="HLType"></xs:complexType>
-    <xs:complexType name="SBRType"></xs:complexType>
-    <xs:complexType name="CLMType"></xs:complexType>
-    <xs:complexType name="LineItemType"></xs:complexType>
-    <xs:complexType name="SEType"></xs:complexType>
-    <xs:complexType name="GEType"></xs:complexType>
     <xs:complexType name="IEAType"></xs:complexType>
+    <xs:complexType name="LUIType"></xs:complexType>
+    <xs:complexType name="NM1Type"></xs:complexType>
+    <xs:complexType name="N2Type"></xs:complexType>
+    <xs:complexType name="N3Type"></xs:complexType>
+    <xs:complexType name="N4Type"></xs:complexType>
+    <xs:complexType name="PATType"></xs:complexType>
+    <xs:complexType name="PERType"></xs:complexType>
+    <xs:complexType name="PRVType"></xs:complexType>
+    <xs:complexType name="REFType"></xs:complexType>
+    <xs:complexType name="STType"></xs:complexType>
+    <xs:complexType name="SBRType"></xs:complexType>
+    <xs:complexType name="SEType"></xs:complexType>
     
 </xs:schema>
