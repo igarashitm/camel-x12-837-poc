@@ -10,7 +10,7 @@ The purpose of this PoC is to demonstrate reading and writing X12 837 EDI messag
 - [x] Start making hands dirty - replace the example input payloads with X12 837 (input for 837-to-xml, output for xml-to-837)
 - [ ] Create  [DFDL schema file](02.x12-837/837-to-xml-order-mapping.dfdl.xsd) to convert 837 to XML
 - [ ] Execute 837-to-xml and save generated XML as [xml-to-837-input-message.xml](02.x12-837/xml-to-837-input-message.xml)
-- [ ] Make sure it runs and prints the log as expected
+- [ ] Make sure it runs and prints the log as expected. In theory the created DFDL schema should work for the other way as well, i.e. xml-to-837
 - [ ] Add DataMapper, so not only just convert between X12 837 and XML, but also demonstrate to read/write from/to a different data shape
 - [ ] Verify it runs and prints the log as expected
 
