@@ -3,7 +3,34 @@
 
     <xs:annotation>
         <xs:appinfo source="http://www.ogf.org/dfdl/">
-            <dfdl:format/>
+            <dfdl:defineVariable defaultValue="~" name="SegmentTerminator" type="xs:string"/>
+            <dfdl:defineVariable defaultValue="*" name="FieldSeparator" type="xs:string"/>
+            <!-- ISA-16 is supposed to override this -->
+            <dfdl:defineVariable defaultValue=">" name="CompositeSeparator" type="xs:string"/>
+            <dfdl:format
+                    representation="text"
+                    encoding="UTF-8"
+                    lengthKind="delimited"
+                    occursCountKind="implicit"
+                    leadingSkip="0"
+                    trailingSkip="0"
+                    alignment="1"
+                    alignmentUnits="bytes"
+                    initiator=""
+                    terminator=""
+                    separator=""
+                    ignoreCase="no"
+                    fillByte="0"
+            />
+            <dfdl:defineFormat name="SegmentFormat">
+                <dfdl:format terminator="{SegmentTerminator}" />
+            </dfdl:defineFormat>
+            <dfdl:defineFormat name="SegmentSequenceFormat">
+                <dfdl:format terminator="" separator="{$FieldSeparator}" />
+            </dfdl:defineFormat>
+            <dfdl:defineFormat name="CompositeSequenceFormat">
+                <dfdl:format terminator="" separator="{$CompositeSeparator}" />
+            </dfdl:defineFormat>
         </xs:appinfo>
     </xs:annotation>
 
@@ -15,20 +42,20 @@
                 <xs:element name="Header">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="ISA" type="ISAType" minOccurs="1" maxOccurs="1"/>
-                            <xs:element name="GS" type="GSType" minOccurs="1" maxOccurs="1"/>
-                            <xs:element name="ST" type="STType" minOccurs="1" maxOccurs="1"/>
-                            <xs:element name="BHT" type="BHTType" minOccurs="1" maxOccurs="1"/>
-                            <xs:element name="REF" type="REFType" minOccurs="0" maxOccurs="3"/>
+                            <xs:element dfdl:initiator="ISA" name="ISA" type="ISAType" minOccurs="1" maxOccurs="1"/>
+                            <xs:element dfdl:initiator="GS" name="GS" type="GSType" minOccurs="1" maxOccurs="1"/>
+                            <xs:element dfdl:initiator="ST" name="ST" type="STType" minOccurs="1" maxOccurs="1"/>
+                            <xs:element dfdl:initiator="BHT" name="BHT" type="BHTType" minOccurs="1" maxOccurs="1"/>
+                            <xs:element dfdl:initiator="REF" name="REF" type="REFType" minOccurs="0" maxOccurs="3"/>
                             <xs:element name="Loop1000" minOccurs="0" maxOccurs="10">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="NM1" minOccurs="1" maxOccurs="1" type="NM1Type"/>
-                                        <xs:element name="N2" minOccurs="0" maxOccurs="2" type="N2Type"/>
-                                        <xs:element name="N3" minOccurs="0" maxOccurs="2" type="N3Type"/>
-                                        <xs:element name="N4" minOccurs="0" maxOccurs="1" type="N4Type"/>
-                                        <xs:element name="REF" minOccurs="0" maxOccurs="2" type="REFType"/>
-                                        <xs:element name="PER" minOccurs="0" maxOccurs="2" type="PERType"/>
+                                        <xs:element dfdl:initiator="NM1" name="NM1" minOccurs="1" maxOccurs="1" type="NM1Type"/>
+                                        <xs:element dfdl:initiator="N2" name="N2" minOccurs="0" maxOccurs="2" type="N2Type"/>
+                                        <xs:element dfdl:initiator="N3" name="N3" minOccurs="0" maxOccurs="2" type="N3Type"/>
+                                        <xs:element dfdl:initiator="K4" name="N4" minOccurs="0" maxOccurs="1" type="N4Type"/>
+                                        <xs:element dfdl:initiator="REF" name="REF" minOccurs="0" maxOccurs="2" type="REFType"/>
+                                        <xs:element dfdl:initiator="PER" name="PER" minOccurs="0" maxOccurs="2" type="PERType"/>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
@@ -40,97 +67,97 @@
                 <xs:element name="Loop2000" minOccurs="1" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="HL" minOccurs="1" maxOccurs="1" type="HLType"/>
-                            <xs:element name="PRV" minOccurs="0" maxOccurs="1" type="PRVType"/>
-                            <xs:element name="SBR" minOccurs="0" maxOccurs="1" type="SBRType"/>
-                            <xs:element name="PAT" minOccurs="0" maxOccurs="1" type="PATType"/>
-                            <xs:element name="DTP" minOccurs="0" maxOccurs="1" type="DTPType"/>
-                            <xs:element name="CUR" minOccurs="0" maxOccurs="1" type="CURType"/>
+                            <xs:element dfdl:initiator="HL" name="HL" minOccurs="1" maxOccurs="1" type="HLType"/>
+                            <xs:element dfdl:initiator="PRV" name="PRV" minOccurs="0" maxOccurs="1" type="PRVType"/>
+                            <xs:element dfdl:initiator="SBR" name="SBR" minOccurs="0" maxOccurs="1" type="SBRType"/>
+                            <xs:element dfdl:initiator="PAT" name="PAT" minOccurs="0" maxOccurs="1" type="PATType"/>
+                            <xs:element dfdl:initiator="DTP" name="DTP" minOccurs="0" maxOccurs="1" type="DTPType"/>
+                            <xs:element dfdl:initiator="CUR" name="CUR" minOccurs="0" maxOccurs="1" type="CURType"/>
                             <xs:element name="Loop2010" minOccurs="0" maxOccurs="10">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="NM1" minOccurs="1" maxOccurs="1" type="NM1Type"/>
-                                        <xs:element name="N2" minOccurs="0" maxOccurs="2" type="N2Type"/>
-                                        <xs:element name="N3" minOccurs="0" maxOccurs="2" type="N3Type"/>
-                                        <xs:element name="N4" minOccurs="0" maxOccurs="1" type="N4Type"/>
-                                        <xs:element name="DMG" minOccurs="0" maxOccurs="1" type="DMGType"/>
-                                        <xs:element name="REF" minOccurs="0" maxOccurs="20" type="REFType"/>
-                                        <xs:element name="PER" minOccurs="0" maxOccurs="2" type="PERType"/>
-                                        <xs:element name="LUI" minOccurs="0" maxOccurs="1" type="LUIType"/>
+                                        <xs:element dfdl:initiator="NM1" name="NM1" minOccurs="1" maxOccurs="1" type="NM1Type"/>
+                                        <xs:element dfdl:initiator="N2" name="N2" minOccurs="0" maxOccurs="2" type="N2Type"/>
+                                        <xs:element dfdl:initiator="N3" name="N3" minOccurs="0" maxOccurs="2" type="N3Type"/>
+                                        <xs:element dfdl:initiator="N4" name="N4" minOccurs="0" maxOccurs="1" type="N4Type"/>
+                                        <xs:element dfdl:initiator="DMG" name="DMG" minOccurs="0" maxOccurs="1" type="DMGType"/>
+                                        <xs:element dfdl:initiator="REF" name="REF" minOccurs="0" maxOccurs="20" type="REFType"/>
+                                        <xs:element dfdl:initiator="PER" name="PER" minOccurs="0" maxOccurs="2" type="PERType"/>
+                                        <xs:element dfdl:initiator="LUI" name="LUI" minOccurs="0" maxOccurs="1" type="LUIType"/>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
                             <xs:element name="Loop2300" minOccurs="0" maxOccurs="100">
                             <xs:complexType>
                                 <xs:sequence>
-                                    <xs:element name="CLM" minOccurs="1" maxOccurs="1" type="CLMType"/>
-                                    <xs:element name="DTP" minOccurs="0" maxOccurs="150" type="DTPType"/>
-                                    <xs:element name="CL1" minOccurs="0" maxOccurs="1" type="CL1Type"/>
-                                    <xs:element name="DN1" minOccurs="0" maxOccurs="1" type="DN1Type"/>
-                                    <xs:element name="DN2" minOccurs="0" maxOccurs="35" type="DN2Type"/>
-                                    <xs:element name="PWK" minOccurs="0" maxOccurs="10" type="PWKType"/>
-                                    <xs:element name="CN1" minOccurs="0" maxOccurs="1" type="CN1Type"/>
-                                    <xs:element name="DSB" minOccurs="0" maxOccurs="1" type="DSBType"/>
-                                    <xs:element name="UR" minOccurs="0" maxOccurs="1" type="URType"/>
-                                    <xs:element name="AMT" minOccurs="0" maxOccurs="40" type="AMTType"/>
-                                    <xs:element name="REF" minOccurs="0" maxOccurs="30" type="REFType"/>
-                                    <xs:element name="K3" minOccurs="0" maxOccurs="10" type="K3Type"/>
-                                    <xs:element name="NTE" minOccurs="0" maxOccurs="20" type="NTEType"/>
-                                    <xs:element name="CR1" minOccurs="0" maxOccurs="1" type="CR1Type"/>
-                                    <xs:element name="CR2" minOccurs="0" maxOccurs="1" type="CR2Type"/>
-                                    <xs:element name="CR3" minOccurs="0" maxOccurs="1" type="CR3Type"/>
-                                    <xs:element name="CR4" minOccurs="0" maxOccurs="3" type="CR4Type"/>
-                                    <xs:element name="CR5" minOccurs="0" maxOccurs="1" type="CR5Type"/>
-                                    <xs:element name="CR6" minOccurs="0" maxOccurs="1" type="CR6Type"/>
-                                    <xs:element name="CR8" minOccurs="0" maxOccurs="9" type="CR8Type"/>
-                                    <xs:element name="CRC" minOccurs="0" maxOccurs="100" type="CRCType"/>
-                                    <xs:element name="HI" minOccurs="0" maxOccurs="25" type="HIType"/>
-                                    <xs:element name="QTY" minOccurs="0" maxOccurs="10" type="QTYType"/>
-                                    <xs:element name="HCP" minOccurs="0" maxOccurs="1" type="HCPType"/>
+                                    <xs:element dfdl:initiator="CLM" name="CLM" minOccurs="1" maxOccurs="1" type="CLMType"/>
+                                    <xs:element dfdl:initiator="DTP" name="DTP" minOccurs="0" maxOccurs="150" type="DTPType"/>
+                                    <xs:element dfdl:initiator="CL1" name="CL1" minOccurs="0" maxOccurs="1" type="CL1Type"/>
+                                    <xs:element dfdl:initiator="DN1" name="DN1" minOccurs="0" maxOccurs="1" type="DN1Type"/>
+                                    <xs:element dfdl:initiator="DN2" name="DN2" minOccurs="0" maxOccurs="35" type="DN2Type"/>
+                                    <xs:element dfdl:initiator="PWK" name="PWK" minOccurs="0" maxOccurs="10" type="PWKType"/>
+                                    <xs:element dfdl:initiator="CN1" name="CN1" minOccurs="0" maxOccurs="1" type="CN1Type"/>
+                                    <xs:element dfdl:initiator="DSB" name="DSB" minOccurs="0" maxOccurs="1" type="DSBType"/>
+                                    <xs:element dfdl:initiator="UR" name="UR" minOccurs="0" maxOccurs="1" type="URType"/>
+                                    <xs:element dfdl:initiator="AMT" name="AMT" minOccurs="0" maxOccurs="40" type="AMTType"/>
+                                    <xs:element dfdl:initiator="REF" name="REF" minOccurs="0" maxOccurs="30" type="REFType"/>
+                                    <xs:element dfdl:initiator="K3" name="K3" minOccurs="0" maxOccurs="10" type="K3Type"/>
+                                    <xs:element dfdl:initiator="NTE" name="NTE" minOccurs="0" maxOccurs="20" type="NTEType"/>
+                                    <xs:element dfdl:initiator="CR1" name="CR1" minOccurs="0" maxOccurs="1" type="CR1Type"/>
+                                    <xs:element dfdl:initiator="CR2" name="CR2" minOccurs="0" maxOccurs="1" type="CR2Type"/>
+                                    <xs:element dfdl:initiator="CR3" name="CR3" minOccurs="0" maxOccurs="1" type="CR3Type"/>
+                                    <xs:element dfdl:initiator="CR4" name="CR4" minOccurs="0" maxOccurs="3" type="CR4Type"/>
+                                    <xs:element dfdl:initiator="CR5" name="CR5" minOccurs="0" maxOccurs="1" type="CR5Type"/>
+                                    <xs:element dfdl:initiator="CR6" name="CR6" minOccurs="0" maxOccurs="1" type="CR6Type"/>
+                                    <xs:element dfdl:initiator="CR8" name="CR8" minOccurs="0" maxOccurs="9" type="CR8Type"/>
+                                    <xs:element dfdl:initiator="CRC" name="CRC" minOccurs="0" maxOccurs="100" type="CRCType"/>
+                                    <xs:element dfdl:initiator="HI" name="HI" minOccurs="0" maxOccurs="25" type="HIType"/>
+                                    <xs:element dfdl:initiator="QTY" name="QTY" minOccurs="0" maxOccurs="10" type="QTYType"/>
+                                    <xs:element dfdl:initiator="HCP" name="HCP" minOccurs="0" maxOccurs="1" type="HCPType"/>
                                     <xs:element name="Loop2305" minOccurs="0" maxOccurs="6">
                                         <xs:complexType>
                                             <xs:sequence>
-                                                <xs:element name="CR7" minOccurs="1" maxOccurs="1" type="CR7Type"/>
-                                                <xs:element name="HSD" minOccurs="0" maxOccurs="12" type="HSDType"/>
+                                                <xs:element dfdl:initiator="CR7" name="CR7" minOccurs="1" maxOccurs="1" type="CR7Type"/>
+                                                <xs:element dfdl:initiator="HSD" name="HSD" minOccurs="0" maxOccurs="12" type="HSDType"/>
                                             </xs:sequence>
                                         </xs:complexType>
                                     </xs:element>
                                     <xs:element name="Loop2310" minOccurs="0" maxOccurs="9">
                                         <xs:complexType>
                                             <xs:sequence>
-                                                <xs:element name="NM1" minOccurs="1" maxOccurs="1" type="NM1Type"/>
-                                                <xs:element name="PRV" minOccurs="0" maxOccurs="1" type="PRVType"/>
-                                                <xs:element name="N2" minOccurs="0" maxOccurs="2" type="N2Type"/>
-                                                <xs:element name="N3" minOccurs="0" maxOccurs="2" type="N3Type"/>
-                                                <xs:element name="N4" minOccurs="0" maxOccurs="1" type="N4Type"/>
-                                                <xs:element name="REF" minOccurs="0" maxOccurs="20" type="REFType"/>
-                                                <xs:element name="PER" minOccurs="0" maxOccurs="2" type="PERType"/>
+                                                <xs:element dfdl:initiator="NM1" name="NM1" minOccurs="1" maxOccurs="1" type="NM1Type"/>
+                                                <xs:element dfdl:initiator="PRV" name="PRV" minOccurs="0" maxOccurs="1" type="PRVType"/>
+                                                <xs:element dfdl:initiator="N2" name="N2" minOccurs="0" maxOccurs="2" type="N2Type"/>
+                                                <xs:element dfdl:initiator="N3" name="N3" minOccurs="0" maxOccurs="2" type="N3Type"/>
+                                                <xs:element dfdl:initiator="N4" name="N4" minOccurs="0" maxOccurs="1" type="N4Type"/>
+                                                <xs:element dfdl:initiator="REF" name="REF" minOccurs="0" maxOccurs="20" type="REFType"/>
+                                                <xs:element dfdl:initiator="PER" name="PER" minOccurs="0" maxOccurs="2" type="PERType"/>
                                             </xs:sequence>
                                         </xs:complexType>
                                     </xs:element>
                                     <xs:element name="Loop2320" minOccurs="0" maxOccurs="10">
                                         <xs:complexType>
                                             <xs:sequence>
-                                                <xs:element name="SBR" minOccurs="1" maxOccurs="1" type="SBRType"/>
-                                                <xs:element name="CAS" minOccurs="0" maxOccurs="99" type="CASType"/>
-                                                <xs:element name="RAS" minOccurs="0" maxOccurs="99" type="RASType"/>
-                                                <xs:element name="AMT" minOccurs="0" maxOccurs="15" type="AMTType"/>
-                                                <xs:element name="DMG" minOccurs="0" maxOccurs="1" type="DMGType"/>
-                                                <xs:element name="OI" minOccurs="0" maxOccurs="1" type="OIType"/>
-                                                <xs:element name="MIA" minOccurs="0" maxOccurs="1" type="MIAType"/>
-                                                <xs:element name="MOA" minOccurs="0" maxOccurs="1" type="MOAType"/>
-                                                <xs:element name="HI" minOccurs="0" maxOccurs="1" type="HIType"/>
-                                                <xs:element name="LQ" minOccurs="0" maxOccurs="99" type="LQType"/>
+                                                <xs:element dfdl:initiator="SBR" name="SBR" minOccurs="1" maxOccurs="1" type="SBRType"/>
+                                                <xs:element dfdl:initiator="CAS" name="CAS" minOccurs="0" maxOccurs="99" type="CASType"/>
+                                                <xs:element dfdl:initiator="RAS" name="RAS" minOccurs="0" maxOccurs="99" type="RASType"/>
+                                                <xs:element dfdl:initiator="AMT" name="AMT" minOccurs="0" maxOccurs="15" type="AMTType"/>
+                                                <xs:element dfdl:initiator="DMG" name="DMG" minOccurs="0" maxOccurs="1" type="DMGType"/>
+                                                <xs:element dfdl:initiator="DI" name="OI" minOccurs="0" maxOccurs="1" type="OIType"/>
+                                                <xs:element dfdl:initiator="MIA" name="MIA" minOccurs="0" maxOccurs="1" type="MIAType"/>
+                                                <xs:element dfdl:initiator="MOA" name="MOA" minOccurs="0" maxOccurs="1" type="MOAType"/>
+                                                <xs:element dfdl:initiator="HI" name="HI" minOccurs="0" maxOccurs="1" type="HIType"/>
+                                                <xs:element dfdl:initiator="LQ" name="LQ" minOccurs="0" maxOccurs="99" type="LQType"/>
                                                 <xs:element name="Loop2330" minOccurs="0" maxOccurs="10">
                                                     <xs:complexType>
                                                         <xs:sequence>
-                                                            <xs:element name="MN1" minOccurs="1" maxOccurs="1" type="NM1Type"/>
-                                                            <xs:element name="N2" minOccurs="0" maxOccurs="2" type="N2Type"/>
-                                                            <xs:element name="N3" minOccurs="0" maxOccurs="2" type="N3Type"/>
-                                                            <xs:element name="N4" minOccurs="0" maxOccurs="1" type="N4Type"/>
-                                                            <xs:element name="PER" minOccurs="0" maxOccurs="2" type="PERType"/>
-                                                            <xs:element name="DTP" minOccurs="0" maxOccurs="9" type="DTPType"/>
-                                                            <xs:element name="REF" minOccurs="0" maxOccurs="99" type="REFType"/>
+                                                            <xs:element dfdl:initiator="NM1" name="MN1" minOccurs="1" maxOccurs="1" type="NM1Type"/>
+                                                            <xs:element dfdl:initiator="N2" name="N2" minOccurs="0" maxOccurs="2" type="N2Type"/>
+                                                            <xs:element dfdl:initiator="N3" name="N3" minOccurs="0" maxOccurs="2" type="N3Type"/>
+                                                            <xs:element dfdl:initiator="N4" name="N4" minOccurs="0" maxOccurs="1" type="N4Type"/>
+                                                            <xs:element dfdl:initiator="PER" name="PER" minOccurs="0" maxOccurs="2" type="PERType"/>
+                                                            <xs:element dfdl:initiator="DTP" name="DTP" minOccurs="0" maxOccurs="9" type="DTPType"/>
+                                                            <xs:element dfdl:initiator="REF" name="REF" minOccurs="0" maxOccurs="99" type="REFType"/>
                                                         </xs:sequence>
                                                     </xs:complexType>
                                                 </xs:element>
@@ -140,82 +167,82 @@
                                     <xs:element name="Loop2400" minOccurs="0" maxOccurs="unbounded">
                                         <xs:complexType>
                                             <xs:sequence>
-                                                <xs:element name="LX" minOccurs="1" maxOccurs="1" type="LXType"/>
-                                                <xs:element name="SV1" minOccurs="0" maxOccurs="1" type="SV1Type"/>
-                                                <xs:element name="SV2" minOccurs="0" maxOccurs="1" type="SV2Type"/>
-                                                <xs:element name="SV3" minOccurs="0" maxOccurs="1" type="SV3Type"/>
-                                                <xs:element name="TOO" minOccurs="0" maxOccurs="32" type="TOOType"/>
-                                                <xs:element name="SV4" minOccurs="0" maxOccurs="1" type="SV4Type"/>
-                                                <xs:element name="SV5" minOccurs="0" maxOccurs="1" type="SV5Type"/>
-                                                <xs:element name="SV6" minOccurs="0" maxOccurs="1" type="SV6Type"/>
-                                                <xs:element name="SV7" minOccurs="0" maxOccurs="1" type="SV7Type"/>
-                                                <xs:element name="HI" minOccurs="0" maxOccurs="25" type="HIType"/>
-                                                <xs:element name="PWK" minOccurs="0" maxOccurs="10" type="PWKType"/>
-                                                <xs:element name="CR1" minOccurs="0" maxOccurs="1" type="CR1Type"/>
-                                                <xs:element name="CR2" minOccurs="0" maxOccurs="5" type="CR2Type"/>
-                                                <xs:element name="CR3" minOccurs="0" maxOccurs="1" type="CR3Type"/>
-                                                <xs:element name="CR4" minOccurs="0" maxOccurs="3" type="CR4Type"/>
-                                                <xs:element name="CR5" minOccurs="0" maxOccurs="1" type="CR5Type"/>
-                                                <xs:element name="CRC" minOccurs="0" maxOccurs="3" type="CRCType"/>
-                                                <xs:element name="DTP" minOccurs="0" maxOccurs="15" type="DTPType"/>
-                                                <xs:element name="QTY" minOccurs="0" maxOccurs="5" type="QTYType"/>
-                                                <xs:element name="MEA" minOccurs="0" maxOccurs="20" type="MEAType"/>
-                                                <xs:element name="CN1" minOccurs="0" maxOccurs="1" type="CN1Type"/>
-                                                <xs:element name="REF" minOccurs="0" maxOccurs="30" type="REFType"/>
-                                                <xs:element name="AMT" minOccurs="0" maxOccurs="15" type="AMTType"/>
-                                                <xs:element name="K3" minOccurs="0" maxOccurs="10" type="K3Type"/>
-                                                <xs:element name="NTE" minOccurs="0" maxOccurs="10" type="NTEType"/>
-                                                <xs:element name="PS1" minOccurs="0" maxOccurs="1" type="PS1Type"/>
-                                                <xs:element name="IMM" minOccurs="0" maxOccurs="unbounded" type="IMMType"/>
-                                                <xs:element name="HSD" minOccurs="0" maxOccurs="1" type="HSDType"/>
-                                                <xs:element name="HCP" minOccurs="0" maxOccurs="1" type="HCPType"/>
-                                                <xs:element name="CR8" minOccurs="0" maxOccurs="unbounded" type="CR8Type"/>
+                                                <xs:element dfdl:initiator="LX" name="LX" minOccurs="1" maxOccurs="1" type="LXType"/>
+                                                <xs:element dfdl:initiator="SV1" name="SV1" minOccurs="0" maxOccurs="1" type="SV1Type"/>
+                                                <xs:element dfdl:initiator="SV2" name="SV2" minOccurs="0" maxOccurs="1" type="SV2Type"/>
+                                                <xs:element dfdl:initiator="SV3" name="SV3" minOccurs="0" maxOccurs="1" type="SV3Type"/>
+                                                <xs:element dfdl:initiator="TOO" name="TOO" minOccurs="0" maxOccurs="32" type="TOOType"/>
+                                                <xs:element dfdl:initiator="SV4" name="SV4" minOccurs="0" maxOccurs="1" type="SV4Type"/>
+                                                <xs:element dfdl:initiator="SV5" name="SV5" minOccurs="0" maxOccurs="1" type="SV5Type"/>
+                                                <xs:element dfdl:initiator="SV6" name="SV6" minOccurs="0" maxOccurs="1" type="SV6Type"/>
+                                                <xs:element dfdl:initiator="SV7" name="SV7" minOccurs="0" maxOccurs="1" type="SV7Type"/>
+                                                <xs:element dfdl:initiator="HI" name="HI" minOccurs="0" maxOccurs="25" type="HIType"/>
+                                                <xs:element dfdl:initiator="PWK" name="PWK" minOccurs="0" maxOccurs="10" type="PWKType"/>
+                                                <xs:element dfdl:initiator="CR1" name="CR1" minOccurs="0" maxOccurs="1" type="CR1Type"/>
+                                                <xs:element dfdl:initiator="CR2" name="CR2" minOccurs="0" maxOccurs="5" type="CR2Type"/>
+                                                <xs:element dfdl:initiator="CR3" name="CR3" minOccurs="0" maxOccurs="1" type="CR3Type"/>
+                                                <xs:element dfdl:initiator="CR4" name="CR4" minOccurs="0" maxOccurs="3" type="CR4Type"/>
+                                                <xs:element dfdl:initiator="CR5" name="CR5" minOccurs="0" maxOccurs="1" type="CR5Type"/>
+                                                <xs:element dfdl:initiator="CRC" name="CRC" minOccurs="0" maxOccurs="3" type="CRCType"/>
+                                                <xs:element dfdl:initiator="DTP" name="DTP" minOccurs="0" maxOccurs="15" type="DTPType"/>
+                                                <xs:element dfdl:initiator="QTY" name="QTY" minOccurs="0" maxOccurs="5" type="QTYType"/>
+                                                <xs:element dfdl:initiator="MEA" name="MEA" minOccurs="0" maxOccurs="20" type="MEAType"/>
+                                                <xs:element dfdl:initiator="CN1" name="CN1" minOccurs="0" maxOccurs="1" type="CN1Type"/>
+                                                <xs:element dfdl:initiator="REF" name="REF" minOccurs="0" maxOccurs="30" type="REFType"/>
+                                                <xs:element dfdl:initiator="AMT" name="AMT" minOccurs="0" maxOccurs="15" type="AMTType"/>
+                                                <xs:element dfdl:initiator="K3" name="K3" minOccurs="0" maxOccurs="10" type="K3Type"/>
+                                                <xs:element dfdl:initiator="NTE" name="NTE" minOccurs="0" maxOccurs="10" type="NTEType"/>
+                                                <xs:element dfdl:initiator="PS1" name="PS1" minOccurs="0" maxOccurs="1" type="PS1Type"/>
+                                                <xs:element dfdl:initiator="IMM" name="IMM" minOccurs="0" maxOccurs="unbounded" type="IMMType"/>
+                                                <xs:element dfdl:initiator="HSD" name="HSD" minOccurs="0" maxOccurs="1" type="HSDType"/>
+                                                <xs:element dfdl:initiator="HCP" name="HCP" minOccurs="0" maxOccurs="1" type="HCPType"/>
+                                                <xs:element dfdl:initiator="CR8" name="CR8" minOccurs="0" maxOccurs="unbounded" type="CR8Type"/>
                                                 <xs:element name="Loop2410" minOccurs="0" maxOccurs="unbounded">
                                                     <xs:complexType>
                                                         <xs:sequence>
-                                                            <xs:element name="LIN" minOccurs="1" maxOccurs="1" type="LINType"/>
-                                                            <xs:element name="CTP" minOccurs="0" maxOccurs="1" type="CTPType"/>
-                                                            <xs:element name="REF" minOccurs="0" maxOccurs="1" type="REFType"/>
-                                                            <xs:element name="SV4" minOccurs="0" maxOccurs="1" type="SV4Type"/>
-                                                            <xs:element name="SV7" minOccurs="0" maxOccurs="1" type="SV7Type"/>
+                                                            <xs:element dfdl:initiator="LIN" name="LIN" minOccurs="1" maxOccurs="1" type="LINType"/>
+                                                            <xs:element dfdl:initiator="CTP" name="CTP" minOccurs="0" maxOccurs="1" type="CTPType"/>
+                                                            <xs:element dfdl:initiator="REF" name="REF" minOccurs="0" maxOccurs="1" type="REFType"/>
+                                                            <xs:element dfdl:initiator="SV4" name="SV4" minOccurs="0" maxOccurs="1" type="SV4Type"/>
+                                                            <xs:element dfdl:initiator="SV7" name="SV7" minOccurs="0" maxOccurs="1" type="SV7Type"/>
                                                         </xs:sequence>
                                                     </xs:complexType>
                                                 </xs:element>
                                                 <xs:element name="Loop2420" minOccurs="0" maxOccurs="10">
                                                     <xs:complexType>
                                                         <xs:sequence>
-                                                            <xs:element name="NM1" minOccurs="1" maxOccurs="1" type="NM1Type"/>
-                                                            <xs:element name="PRV" minOccurs="0" maxOccurs="1" type="PRVType"/>
-                                                            <xs:element name="N2" minOccurs="0" maxOccurs="2" type="N2Type"/>
-                                                            <xs:element name="N3" minOccurs="0" maxOccurs="2" type="N3Type"/>
-                                                            <xs:element name="N4" minOccurs="0" maxOccurs="1" type="N4Type"/>
-                                                            <xs:element name="REF" minOccurs="0" maxOccurs="20" type="REFType"/>
-                                                            <xs:element name="PER" minOccurs="0" maxOccurs="2" type="PERType"/>
+                                                            <xs:element dfdl:initiator="NM1" name="NM1" minOccurs="1" maxOccurs="1" type="NM1Type"/>
+                                                            <xs:element dfdl:initiator="PRV" name="PRV" minOccurs="0" maxOccurs="1" type="PRVType"/>
+                                                            <xs:element dfdl:initiator="N2" name="N2" minOccurs="0" maxOccurs="2" type="N2Type"/>
+                                                            <xs:element dfdl:initiator="N3" name="N3" minOccurs="0" maxOccurs="2" type="N3Type"/>
+                                                            <xs:element dfdl:initiator="N4" name="N4" minOccurs="0" maxOccurs="1" type="N4Type"/>
+                                                            <xs:element dfdl:initiator="REF" name="REF" minOccurs="0" maxOccurs="20" type="REFType"/>
+                                                            <xs:element dfdl:initiator="PER" name="PER" minOccurs="0" maxOccurs="2" type="PERType"/>
                                                         </xs:sequence>
                                                     </xs:complexType>
                                                 </xs:element>
                                                 <xs:element name="Loop2430" minOccurs="0" maxOccurs="unbounded">
                                                     <xs:complexType>
                                                         <xs:sequence>
-                                                            <xs:element name="SVD" minOccurs="1" maxOccurs="1" type="SVDType"/>
-                                                            <xs:element name="CAS" minOccurs="0" maxOccurs="99" type="CASType"/>
-                                                            <xs:element name="RAS" minOccurs="0" maxOccurs="99" type="RASType"/>
-                                                            <xs:element name="DTP" minOccurs="0" maxOccurs="9" type="DTPType"/>
-                                                            <xs:element name="AMT" minOccurs="0" maxOccurs="20" type="AMTType"/>
-                                                            <xs:element name="LQ" minOccurs="0" maxOccurs="99" type="LQType"/>
+                                                            <xs:element dfdl:initiator="SVD" name="SVD" minOccurs="1" maxOccurs="1" type="SVDType"/>
+                                                            <xs:element dfdl:initiator="CAS" name="CAS" minOccurs="0" maxOccurs="99" type="CASType"/>
+                                                            <xs:element dfdl:initiator="RAS" name="RAS" minOccurs="0" maxOccurs="99" type="RASType"/>
+                                                            <xs:element dfdl:initiator="DTP" name="DTP" minOccurs="0" maxOccurs="9" type="DTPType"/>
+                                                            <xs:element dfdl:initiator="AMT" name="AMT" minOccurs="0" maxOccurs="20" type="AMTType"/>
+                                                            <xs:element dfdl:initiator="LQ" name="LQ" minOccurs="0" maxOccurs="99" type="LQType"/>
                                                         </xs:sequence>
                                                     </xs:complexType>
                                                 </xs:element>
-                                                <xs:element name="LS" minOccurs="0" maxOccurs="1" type="LSType"/>
+                                                <xs:element dfdl:initiator="LS" name="LS" minOccurs="0" maxOccurs="1" type="LSType"/>
                                                 <xs:element name="Loop2440" minOccurs="0" maxOccurs="unbounded">
                                                     <xs:complexType>
                                                         <xs:sequence>
-                                                            <xs:element name="LQ" minOccurs="1" maxOccurs="1" type="LQType"/>
-                                                            <xs:element name="FRM" minOccurs="1" maxOccurs="99" type="FRMType"/>
+                                                            <xs:element dfdl:initiator="LQ" name="LQ" minOccurs="1" maxOccurs="1" type="LQType"/>
+                                                            <xs:element dfdl:initiator="FRM" name="FRM" minOccurs="1" maxOccurs="99" type="FRMType"/>
                                                         </xs:sequence>
                                                     </xs:complexType>
                                                 </xs:element>
-                                                <xs:element name="LE" minOccurs="0" maxOccurs="1" type="LEType"/>
+                                                <xs:element dfdl:initiator="LE" name="LE" minOccurs="0" maxOccurs="1" type="LEType"/>
                                             </xs:sequence>
                                         </xs:complexType>
                                     </xs:element>
@@ -228,15 +255,15 @@
                 </xs:element>
 
                 <!-- Trailer -->
-                <xs:element name="SE" type="SEType"/>
-                <xs:element name="GE" type="GEType"/>
-                <xs:element name="IEA" type="IEAType"/>
+                <xs:element dfdl:initiator="SE" name="SE" type="SEType"/>
+                <xs:element dfdl:initiator="GE" name="GE" type="GEType"/>
+                <xs:element dfdl:initiator="IEA" name="IEA" type="IEAType"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
 
     <!-- Segment Types -->
-    <xs:complexType name="AMTType"></xs:complexType>
+    <xs:complexType name="AMTType"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="BHTType">
         <xs:sequence>
             <xs:element name="BHT-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
@@ -247,7 +274,7 @@
             <xs:element name="BHT-06" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="CASType"></xs:complexType>
+    <xs:complexType name="CASType"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="CLMType">
         <xs:sequence>
             <xs:element name="CLM-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
@@ -273,19 +300,19 @@
             <xs:element name="CLM-21" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="CL1Type"></xs:complexType>
-    <xs:complexType name="CN1Type"></xs:complexType>
-    <xs:complexType name="CR1Type"></xs:complexType>
-    <xs:complexType name="CR2Type"></xs:complexType>
-    <xs:complexType name="CR3Type"></xs:complexType>
-    <xs:complexType name="CR4Type"></xs:complexType>
-    <xs:complexType name="CR5Type"></xs:complexType>
-    <xs:complexType name="CR6Type"></xs:complexType>
-    <xs:complexType name="CR7Type"></xs:complexType>
-    <xs:complexType name="CR8Type"></xs:complexType>
-    <xs:complexType name="CRCType"></xs:complexType>
-    <xs:complexType name="CTPType"></xs:complexType>
-    <xs:complexType name="CURType"></xs:complexType>
+    <xs:complexType name="CL1Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="CN1Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="CR1Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="CR2Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="CR3Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="CR4Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="CR5Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="CR6Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="CR7Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="CR8Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="CRCType"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="CTPType"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="CURType"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="DMGType">
         <xs:sequence>
             <xs:element name="DMG-01" type="xs:string" minOccurs="0" maxOccurs="1"/>
@@ -303,9 +330,9 @@
 
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="DN1Type"></xs:complexType>
-    <xs:complexType name="DN2Type"></xs:complexType>
-    <xs:complexType name="DSBType"></xs:complexType>
+    <xs:complexType name="DN1Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="DN2Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="DSBType"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="DTPType">
         <xs:sequence>
             <xs:element name="DTP-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
@@ -313,7 +340,7 @@
             <xs:element name="DTP-03" type="xs:string" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="FRMType"></xs:complexType>
+    <xs:complexType name="FRMType"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="GEType">
         <xs:sequence>
             <xs:element name="GE-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
@@ -332,7 +359,7 @@
             <xs:element name="GS-08" type="xs:string" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="HCPType"></xs:complexType>
+    <xs:complexType name="HCPType"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="HIType">
         <xs:sequence>
             <xs:element name="HI-01" minOccurs="1" maxOccurs="1" type="C022Type" />
@@ -357,14 +384,14 @@
             <xs:element name="HL-04" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="HSDType"></xs:complexType>
+    <xs:complexType name="HSDType"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="IEAType">
         <xs:sequence>
             <xs:element name="IEA-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
             <xs:element name="IEA-02" type="xs:string" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="IMMType"></xs:complexType>
+    <xs:complexType name="IMMType"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="ISAType">
         <xs:sequence>
             <xs:element name="ISA-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
@@ -382,23 +409,29 @@
             <xs:element name="ISA-13" type="xs:string" minOccurs="1" maxOccurs="1"/>
             <xs:element name="ISA-14" type="xs:string" minOccurs="1" maxOccurs="1"/>
             <xs:element name="ISA-15" type="xs:string" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="ISA-16" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-16" type="xs:string" minOccurs="1" maxOccurs="1">
+                <xs:annotation>
+                    <xs:appinfo source="http://www.ogf.org/dfdl/">
+                        <dfdl:setVariable ref="CompositeSeparator" value="."/>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="K3Type"></xs:complexType>
-    <xs:complexType name="LEType"></xs:complexType>
-    <xs:complexType name="LINType"></xs:complexType>
-    <xs:complexType name="LQType"></xs:complexType>
-    <xs:complexType name="LSType"></xs:complexType>
-    <xs:complexType name="LUIType"></xs:complexType>
+    <xs:complexType name="K3Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="LEType"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="LINType"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="LQType"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="LSType"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="LUIType"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="LXType">
         <xs:sequence>
             <xs:element name="LX-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="MEAType"></xs:complexType>
-    <xs:complexType name="MIAType"></xs:complexType>
-    <xs:complexType name="MOAType"></xs:complexType>
+    <xs:complexType name="MEAType"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="MIAType"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="MOAType"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="NM1Type">
         <xs:sequence>
             <xs:element name="NM1-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
@@ -415,8 +448,8 @@
             <xs:element name="NM1-12" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="NTEType"></xs:complexType>
-    <xs:complexType name="N2Type"></xs:complexType>
+    <xs:complexType name="NTEType"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="N2Type"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="N3Type">
         <xs:sequence>
             <xs:element name="N3-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
@@ -435,7 +468,7 @@
             <xs:element name="N4-08" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="OIType"></xs:complexType>
+    <xs:complexType name="OIType"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="PATType">
         <xs:sequence>
             <xs:element name="PAT-01" type="xs:string" minOccurs="0" maxOccurs="1"/>
@@ -472,10 +505,10 @@
             <xs:element name="PRV-06" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="PS1Type"></xs:complexType>
-    <xs:complexType name="PWKType"></xs:complexType>
-    <xs:complexType name="QTYType"></xs:complexType>
-    <xs:complexType name="RASType"></xs:complexType>
+    <xs:complexType name="PS1Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="PWKType"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="QTYType"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="RASType"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="REFType">
         <xs:sequence>
             <xs:element name="REF-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
@@ -511,7 +544,7 @@
             <xs:element name="SE-02" type="xs:string" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="SVDType"></xs:complexType>
+    <xs:complexType name="SVDType"><xs:sequence></xs:sequence></xs:complexType>
     <xs:complexType name="SV1Type">
         <xs:sequence>
             <xs:element name="SV1-01" type="C003Type" minOccurs="1" maxOccurs="1"/>
@@ -537,14 +570,14 @@
             <xs:element name="SV1-21" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
-    <xs:complexType name="SV2Type"></xs:complexType>
-    <xs:complexType name="SV3Type"></xs:complexType>
-    <xs:complexType name="SV4Type"></xs:complexType>
-    <xs:complexType name="SV5Type"></xs:complexType>
-    <xs:complexType name="SV6Type"></xs:complexType>
-    <xs:complexType name="SV7Type"></xs:complexType>
-    <xs:complexType name="TOOType"></xs:complexType>
-    <xs:complexType name="URType"></xs:complexType>
+    <xs:complexType name="SV2Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="SV3Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="SV4Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="SV5Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="SV6Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="SV7Type"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="TOOType"><xs:sequence></xs:sequence></xs:complexType>
+    <xs:complexType name="URType"><xs:sequence></xs:sequence></xs:complexType>
 
     <!-- Element Types -->
     <xs:complexType name="C003Type">
