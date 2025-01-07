@@ -549,72 +549,72 @@
     <!-- Element Types -->
     <xs:complexType name="C003Type">
        <xs:sequence>
-           <xs:element name="01" type="xs:string" minOccurs="1" maxOccurs="1"/>
-           <xs:element name="02" type="xs:string" minOccurs="1" maxOccurs="1"/>
-           <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
-           <xs:element name="04" type="xs:string" minOccurs="0" maxOccurs="1"/>
-           <xs:element name="05" type="xs:string" minOccurs="0" maxOccurs="1"/>
-           <xs:element name="06" type="xs:string" minOccurs="0" maxOccurs="1"/>
-           <xs:element name="07" type="xs:string" minOccurs="0" maxOccurs="1"/>
-           <xs:element name="08" type="xs:string" minOccurs="0" maxOccurs="1"/>
-           <xs:element name="09" type="xs:string" minOccurs="0" maxOccurs="1"/>
-           <xs:element name="10" type="xs:string" minOccurs="0" maxOccurs="1"/>
-           <xs:element name="11" type="xs:string" minOccurs="0" maxOccurs="1"/>
-           <xs:element name="12" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="E01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+           <xs:element name="E02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+           <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="E04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="E05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="E06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="E07" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="E08" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="E09" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="E10" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="E11" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="E12" type="xs:string" minOccurs="0" maxOccurs="1"/>
        </xs:sequence>
     </xs:complexType>
     <xs:complexType name="C022Type">
         <xs:sequence>
-            <xs:element name="01" type="xs:string" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="02" type="xs:string" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="04" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="05" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="06" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="07" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="08" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="09" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="10" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="E02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E07" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E08" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E09" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E10" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="C023Type">
         <xs:sequence>
-            <xs:element name="01" type="xs:string" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="02" type="xs:string" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="E02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="C024Type">
     <xs:sequence>
-        <xs:element name="01" type="xs:string" minOccurs="1" maxOccurs="1"/>
-        <xs:element name="02" type="xs:string" minOccurs="0" maxOccurs="1"/>
-        <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
-        <xs:element name="04" type="xs:string" minOccurs="0" maxOccurs="1"/>
-        <xs:element name="05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="E01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="E02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="E04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="E05" type="xs:string" minOccurs="0" maxOccurs="1"/>
     </xs:sequence>
     </xs:complexType>
     <xs:complexType name="C035Type">
         <xs:sequence>
-            <xs:element name="01" type="xs:string" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="02" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="E02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="C040Type">
         <xs:sequence>
-            <xs:element name="01" type="xs:string" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="02" type="xs:string" minOccurs="1" maxOccurs="1"/>
-            <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="04" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="05" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="E02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E06" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="C056Type">
         <xs:sequence>
-            <xs:element name="01" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="02" type="xs:string" minOccurs="0" maxOccurs="1"/>
-            <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E01" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 </xs:schema>
