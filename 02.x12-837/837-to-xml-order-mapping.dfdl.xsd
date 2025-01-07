@@ -237,9 +237,42 @@
 
     <!-- Segment Types -->
     <xs:complexType name="AMTType"></xs:complexType>
-    <xs:complexType name="BHTType"></xs:complexType>
+    <xs:complexType name="BHTType">
+        <xs:sequence>
+            <xs:element name="BHT-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="BHT-02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="BHT-03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="BHT-04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="BHT-05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="BHT-06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="CASType"></xs:complexType>
-    <xs:complexType name="CLMType"></xs:complexType>
+    <xs:complexType name="CLMType">
+        <xs:sequence>
+            <xs:element name="CLM-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="CLM-02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-05" minOccurs="0" maxOccurs="1" type="C023Type" />
+            <xs:element name="CLM-06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-07" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-08" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-09" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-10" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-11" minOccurs="0" maxOccurs="1" type="C024Type" />
+            <xs:element name="CLM-12" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-13" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-14" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-15" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-16" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-17" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-18" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-19" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-20" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="CLM-21" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="CL1Type"></xs:complexType>
     <xs:complexType name="CN1Type"></xs:complexType>
     <xs:complexType name="CR1Type"></xs:complexType>
@@ -253,27 +286,103 @@
     <xs:complexType name="CRCType"></xs:complexType>
     <xs:complexType name="CTPType"></xs:complexType>
     <xs:complexType name="CURType"></xs:complexType>
-    <xs:complexType name="DMGType"></xs:complexType>
+    <xs:complexType name="DMGType">
+        <xs:sequence>
+            <xs:element name="DMG-01" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DMG-02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DMG-03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DMG-04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DMG-05" minOccurs="0" maxOccurs="1" type="C056Type" />
+            <xs:element name="DMG-06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DMG-07" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DMG-08" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DMG-09" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DMG-10" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DMG-11" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="DMG-12" type="xs:string" minOccurs="0" maxOccurs="1"/>
+
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="DN1Type"></xs:complexType>
     <xs:complexType name="DN2Type"></xs:complexType>
     <xs:complexType name="DSBType"></xs:complexType>
-    <xs:complexType name="DTPType"></xs:complexType>
+    <xs:complexType name="DTPType">
+        <xs:sequence>
+            <xs:element name="DTP-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="DTP-02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="DTP-03" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="FRMType"></xs:complexType>
-    <xs:complexType name="GEType"></xs:complexType>
-    <xs:complexType name="GSType"></xs:complexType>
+    <xs:complexType name="GEType">
+        <xs:sequence>
+            <xs:element name="GE-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="GE-02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="GSType">
+        <xs:sequence>
+            <xs:element name="GS-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="GS-02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="GS-03" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="GS-04" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="GS-05" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="GS-06" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="GS-07" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="GS-08" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="HCPType"></xs:complexType>
-    <xs:complexType name="HIType"></xs:complexType>
-    <xs:complexType name="HLType"></xs:complexType>
+    <xs:complexType name="HIType">
+        <xs:sequence>
+            <xs:element name="HI-01" minOccurs="1" maxOccurs="1" type="C022Type" />
+            <xs:element name="HI-02" minOccurs="0" maxOccurs="1" type="C022Type" />
+            <xs:element name="HI-03" minOccurs="0" maxOccurs="1" type="C022Type" />
+            <xs:element name="HI-04" minOccurs="0" maxOccurs="1" type="C022Type" />
+            <xs:element name="HI-05" minOccurs="0" maxOccurs="1" type="C022Type" />
+            <xs:element name="HI-06" minOccurs="0" maxOccurs="1" type="C022Type" />
+            <xs:element name="HI-07" minOccurs="0" maxOccurs="1" type="C022Type" />
+            <xs:element name="HI-08" minOccurs="0" maxOccurs="1" type="C022Type" />
+            <xs:element name="HI-09" minOccurs="0" maxOccurs="1" type="C022Type" />
+            <xs:element name="HI-10" minOccurs="0" maxOccurs="1" type="C022Type" />
+            <xs:element name="HI-11" minOccurs="0" maxOccurs="1" type="C022Type" />
+            <xs:element name="HI-12" minOccurs="0" maxOccurs="1" type="C022Type" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="HLType">
+        <xs:sequence>
+            <xs:element name="HL-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="HL-02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="HL-03" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="HL-04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="HSDType"></xs:complexType>
-    <xs:complexType name="IEAType"></xs:complexType>
+    <xs:complexType name="IEAType">
+        <xs:sequence>
+            <xs:element name="IEA-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="IEA-02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="IMMType"></xs:complexType>
     <xs:complexType name="ISAType">
         <xs:sequence>
-            <xs:element name="ISA01" type="xs:string"/>
-            <xs:element name="ISA02" type="xs:string"/>
-            <xs:element name="ISA03" type="xs:string"/>
-            <xs:element name="ISA04" type="xs:string"/>
-            <!-- Additional ISA elements -->
+            <xs:element name="ISA-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-03" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-04" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-05" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-06" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-07" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-08" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-09" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-10" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-11" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-12" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-13" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-14" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-15" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ISA-16" type="xs:string" minOccurs="1" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="K3Type"></xs:complexType>
@@ -282,29 +391,152 @@
     <xs:complexType name="LQType"></xs:complexType>
     <xs:complexType name="LSType"></xs:complexType>
     <xs:complexType name="LUIType"></xs:complexType>
-    <xs:complexType name="LXType"></xs:complexType>
+    <xs:complexType name="LXType">
+        <xs:sequence>
+            <xs:element name="LX-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="MEAType"></xs:complexType>
     <xs:complexType name="MIAType"></xs:complexType>
     <xs:complexType name="MOAType"></xs:complexType>
-    <xs:complexType name="NM1Type"></xs:complexType>
+    <xs:complexType name="NM1Type">
+        <xs:sequence>
+            <xs:element name="NM1-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="NM1-02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="NM1-03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="NM1-04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="NM1-05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="NM1-06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="NM1-07" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="NM1-08" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="NM1-09" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="NM1-10" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="NM1-11" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="NM1-12" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="NTEType"></xs:complexType>
     <xs:complexType name="N2Type"></xs:complexType>
-    <xs:complexType name="N3Type"></xs:complexType>
-    <xs:complexType name="N4Type"></xs:complexType>
+    <xs:complexType name="N3Type">
+        <xs:sequence>
+            <xs:element name="N3-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="N3-02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="N4Type">
+        <xs:sequence>
+            <xs:element name="N4-01" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="N4-02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="N4-03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="N4-04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="N4-05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="N4-06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="N4-07" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="N4-08" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="OIType"></xs:complexType>
-    <xs:complexType name="PATType"></xs:complexType>
-    <xs:complexType name="PERType"></xs:complexType>
-    <xs:complexType name="PRVType"></xs:complexType>
+    <xs:complexType name="PATType">
+        <xs:sequence>
+            <xs:element name="PAT-01" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PAT-02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PAT-03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PAT-04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PAT-05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PAT-06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PAT-07" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PAT-08" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PAT-09" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PERType">
+        <xs:sequence>
+            <xs:element name="PER-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="PER-02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PER-03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PER-04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PER-05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PER-06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PER-07" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PER-08" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PER-09" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PRVType">
+        <xs:sequence>
+            <xs:element name="PRV-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="PRV-02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PRV-03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PRV-04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="PRV-05" minOccurs="0" maxOccurs="1" type="C035Type"/>
+            <xs:element name="PRV-06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="PS1Type"></xs:complexType>
     <xs:complexType name="PWKType"></xs:complexType>
     <xs:complexType name="QTYType"></xs:complexType>
     <xs:complexType name="RASType"></xs:complexType>
-    <xs:complexType name="REFType"></xs:complexType>
-    <xs:complexType name="STType"></xs:complexType>
-    <xs:complexType name="SBRType"></xs:complexType>
-    <xs:complexType name="SEType"></xs:complexType>
+    <xs:complexType name="REFType">
+        <xs:sequence>
+            <xs:element name="REF-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="REF-02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="REF-03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="REF-04" type="C040Type" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="STType">
+        <xs:sequence>
+            <xs:element name="ST-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ST-02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="ST-03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SBRType">
+        <xs:sequence>
+            <xs:element name="SBR-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SBR-02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SBR-03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SBR-04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SBR-05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SBR-06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SBR-07" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SBR-08" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SBR-09" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SBR-10" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SEType">
+        <xs:sequence>
+            <xs:element name="SE-01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SE-02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="SVDType"></xs:complexType>
-    <xs:complexType name="SV1Type"></xs:complexType>
+    <xs:complexType name="SV1Type">
+        <xs:sequence>
+            <xs:element name="SV1-01" type="C003Type" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="SV1-02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-07" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-08" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-09" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-10" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-11" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-12" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-13" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-14" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-15" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-16" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-17" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-18" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-19" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-20" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="SV1-21" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
     <xs:complexType name="SV2Type"></xs:complexType>
     <xs:complexType name="SV3Type"></xs:complexType>
     <xs:complexType name="SV4Type"></xs:complexType>
@@ -314,4 +546,75 @@
     <xs:complexType name="TOOType"></xs:complexType>
     <xs:complexType name="URType"></xs:complexType>
 
+    <!-- Element Types -->
+    <xs:complexType name="C003Type">
+       <xs:sequence>
+           <xs:element name="01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+           <xs:element name="02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+           <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="07" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="08" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="09" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="10" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="11" type="xs:string" minOccurs="0" maxOccurs="1"/>
+           <xs:element name="12" type="xs:string" minOccurs="0" maxOccurs="1"/>
+       </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="C022Type">
+        <xs:sequence>
+            <xs:element name="01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="07" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="08" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="09" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="10" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="C023Type">
+        <xs:sequence>
+            <xs:element name="01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="C024Type">
+    <xs:sequence>
+        <xs:element name="01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        <xs:element name="05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="C035Type">
+        <xs:sequence>
+            <xs:element name="01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="C040Type">
+        <xs:sequence>
+            <xs:element name="01" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="02" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="04" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="05" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="06" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="C056Type">
+        <xs:sequence>
+            <xs:element name="01" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="02" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="03" type="xs:string" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>
