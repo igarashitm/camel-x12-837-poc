@@ -4,7 +4,7 @@
 
     <xs:annotation>
         <xs:appinfo source="http://www.ogf.org/dfdl/">
-            <dfdl:defineVariable defaultValue="~" name="SegmentTerminator" type="xs:string" />
+            <dfdl:defineVariable defaultValue="~%NL;" name="SegmentTerminator" type="xs:string" />
             <dfdl:defineVariable
                 defaultValue="*" name="FieldSeparator" type="xs:string" />
             <!-- ISA-16 is supposed to override this -->
@@ -72,15 +72,17 @@
                 floating="no"
             />
             <dfdl:defineFormat name="SegmentFormat">
-                <dfdl:format terminator="{$SegmentTerminator}" />
+                <dfdl:format terminator="{$SegmentTerminator}" emptyValueDelimiterPolicy="both" />
             </dfdl:defineFormat>
             <dfdl:defineFormat
                 name="SegmentSequenceFormat">
-                <dfdl:format terminator="" separator="{$FieldSeparator}" />
+                <dfdl:format terminator="" separator="{$FieldSeparator}" separatorPosition="prefix"
+                    separatorPolicy="suppressedAtEndLax" />
             </dfdl:defineFormat>
             <dfdl:defineFormat
                 name="CompositeSequenceFormat">
-                <dfdl:format terminator="" separator="{$CompositeSeparator}" />
+                <dfdl:format terminator="" separator="{$CompositeSeparator}"
+                    separatorPosition="infix" separatorPolicy="suppressedAtEndLax" />
             </dfdl:defineFormat>
         </xs:appinfo>
     </xs:annotation>
@@ -93,26 +95,28 @@
                 <xs:element name="Header">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="ISA" name="ISA"
-                                type="ISAType" minOccurs="1" maxOccurs="1" />
-                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="GS" name="GS"
-                                type="GSType" minOccurs="1" maxOccurs="1" />
-                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="ST" name="ST"
-                                type="STType" minOccurs="1" maxOccurs="1" />
-                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="BHT" name="BHT"
-                                type="BHTType" minOccurs="1" maxOccurs="1" />
-                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="REF" name="REF"
-                                type="REFType" minOccurs="0" maxOccurs="3" />
+                            <xs:sequence dfdl:initiatedContent="yes">
+                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="ISA" name="ISA"
+                                    type="ISAType" minOccurs="1" maxOccurs="1" />
+                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="GS" name="GS"
+                                    type="GSType" minOccurs="1" maxOccurs="1" />
+                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="ST" name="ST"
+                                    type="STType" minOccurs="1" maxOccurs="1" />
+                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="BHT" name="BHT"
+                                    type="BHTType" minOccurs="1" maxOccurs="1" />
+                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="REF" name="REF"
+                                    type="REFType" minOccurs="0" maxOccurs="3" />
+                            </xs:sequence>
                             <xs:element name="Loop1000" minOccurs="0" maxOccurs="10">
                                 <xs:complexType>
-                                    <xs:sequence>
+                                    <xs:sequence dfdl:initiatedContent="yes">
                                         <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="NM1"
                                             name="NM1" minOccurs="1" maxOccurs="1" type="NM1Type" />
                                         <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="N2"
                                             name="N2" minOccurs="0" maxOccurs="2" type="N2Type" />
                                         <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="N3"
                                             name="N3" minOccurs="0" maxOccurs="2" type="N3Type" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="K4"
+                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="N4"
                                             name="N4" minOccurs="0" maxOccurs="1" type="N4Type" />
                                         <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="REF"
                                             name="REF" minOccurs="0" maxOccurs="2" type="REFType" />
@@ -129,21 +133,23 @@
                 <xs:element name="Loop2000" minOccurs="1" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="HL" name="HL"
-                                minOccurs="1" maxOccurs="1" type="HLType" />
-                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="PRV" name="PRV"
-                                minOccurs="0" maxOccurs="1" type="PRVType" />
-                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SBR" name="SBR"
-                                minOccurs="0" maxOccurs="1" type="SBRType" />
-                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="PAT" name="PAT"
-                                minOccurs="0" maxOccurs="1" type="PATType" />
-                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="DTP" name="DTP"
-                                minOccurs="0" maxOccurs="1" type="DTPType" />
-                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CUR" name="CUR"
-                                minOccurs="0" maxOccurs="1" type="CURType" />
+                            <xs:sequence dfdl:initiatedContent="yes">
+                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="HL" name="HL"
+                                    minOccurs="1" maxOccurs="1" type="HLType" />
+                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="PRV" name="PRV"
+                                    minOccurs="0" maxOccurs="1" type="PRVType" />
+                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SBR" name="SBR"
+                                    minOccurs="0" maxOccurs="1" type="SBRType" />
+                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="PAT" name="PAT"
+                                    minOccurs="0" maxOccurs="1" type="PATType" />
+                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="DTP" name="DTP"
+                                    minOccurs="0" maxOccurs="1" type="DTPType" />
+                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CUR" name="CUR"
+                                    minOccurs="0" maxOccurs="1" type="CURType" />
+                            </xs:sequence>
                             <xs:element name="Loop2010" minOccurs="0" maxOccurs="10">
                                 <xs:complexType>
-                                    <xs:sequence>
+                                    <xs:sequence dfdl:initiatedContent="yes">
                                         <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="NM1"
                                             name="NM1" minOccurs="1" maxOccurs="1" type="NM1Type" />
                                         <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="N2"
@@ -166,80 +172,132 @@
                             <xs:element name="Loop2300" minOccurs="0" maxOccurs="100">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CLM"
-                                            name="CLM" minOccurs="1" maxOccurs="1" type="CLMType" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="DTP"
-                                            name="DTP" minOccurs="0" maxOccurs="150" type="DTPType" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CL1"
-                                            name="CL1" minOccurs="0" maxOccurs="1" type="CL1Type" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="DN1"
-                                            name="DN1" minOccurs="0" maxOccurs="1" type="DN1Type" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="DN2"
-                                            name="DN2" minOccurs="0" maxOccurs="35" type="DN2Type" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="PWK"
-                                            name="PWK" minOccurs="0" maxOccurs="10" type="PWKType" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CN1"
-                                            name="CN1" minOccurs="0" maxOccurs="1" type="CN1Type" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="DSB"
-                                            name="DSB" minOccurs="0" maxOccurs="1" type="DSBType" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="UR"
-                                            name="UR" minOccurs="0" maxOccurs="1" type="URType" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="AMT"
-                                            name="AMT" minOccurs="0" maxOccurs="40" type="AMTType" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="REF"
-                                            name="REF" minOccurs="0" maxOccurs="30" type="REFType" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="K3"
-                                            name="K3" minOccurs="0" maxOccurs="10" type="K3Type" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="NTE"
-                                            name="NTE" minOccurs="0" maxOccurs="20" type="NTEType" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR1"
-                                            name="CR1" minOccurs="0" maxOccurs="1" type="CR1Type" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR2"
-                                            name="CR2" minOccurs="0" maxOccurs="1" type="CR2Type" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR3"
-                                            name="CR3" minOccurs="0" maxOccurs="1" type="CR3Type" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR4"
-                                            name="CR4" minOccurs="0" maxOccurs="3" type="CR4Type" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR5"
-                                            name="CR5" minOccurs="0" maxOccurs="1" type="CR5Type" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR6"
-                                            name="CR6" minOccurs="0" maxOccurs="1" type="CR6Type" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR8"
-                                            name="CR8" minOccurs="0" maxOccurs="9" type="CR8Type" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CRC"
-                                            name="CRC" minOccurs="0" maxOccurs="100" type="CRCType" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="HI"
-                                            name="HI" minOccurs="0" maxOccurs="25" type="HIType" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="QTY"
-                                            name="QTY" minOccurs="0" maxOccurs="10" type="QTYType" />
-                                        <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="HCP" name="HCP" minOccurs="0"
-                                            maxOccurs="1" type="HCPType" />
-                                        <xs:element name="Loop2305" minOccurs="0" maxOccurs="6">
+                                        <xs:sequence dfdl:initiatedContent="yes">
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="CLM"
+                                                name="CLM" minOccurs="1" maxOccurs="1"
+                                                type="CLMType" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="DTP"
+                                                name="DTP" minOccurs="0" maxOccurs="150"
+                                                type="DTPType" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="CL1"
+                                                name="CL1" minOccurs="0" maxOccurs="1"
+                                                type="CL1Type" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="DN1"
+                                                name="DN1" minOccurs="0" maxOccurs="1"
+                                                type="DN1Type" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="DN2"
+                                                name="DN2" minOccurs="0" maxOccurs="35"
+                                                type="DN2Type" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="PWK"
+                                                name="PWK" minOccurs="0" maxOccurs="10"
+                                                type="PWKType" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="CN1"
+                                                name="CN1" minOccurs="0" maxOccurs="1"
+                                                type="CN1Type" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="DSB"
+                                                name="DSB" minOccurs="0" maxOccurs="1"
+                                                type="DSBType" />
+                                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="UR"
+                                                name="UR" minOccurs="0" maxOccurs="1" type="URType" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="AMT"
+                                                name="AMT" minOccurs="0" maxOccurs="40"
+                                                type="AMTType" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="REF"
+                                                name="REF" minOccurs="0" maxOccurs="30"
+                                                type="REFType" />
+                                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="K3"
+                                                name="K3" minOccurs="0" maxOccurs="10" type="K3Type" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="NTE"
+                                                name="NTE" minOccurs="0" maxOccurs="20"
+                                                type="NTEType" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="CR1"
+                                                name="CR1" minOccurs="0" maxOccurs="1"
+                                                type="CR1Type" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="CR2"
+                                                name="CR2" minOccurs="0" maxOccurs="1"
+                                                type="CR2Type" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="CR3"
+                                                name="CR3" minOccurs="0" maxOccurs="1"
+                                                type="CR3Type" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="CR4"
+                                                name="CR4" minOccurs="0" maxOccurs="3"
+                                                type="CR4Type" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="CR5"
+                                                name="CR5" minOccurs="0" maxOccurs="1"
+                                                type="CR5Type" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="CR6"
+                                                name="CR6" minOccurs="0" maxOccurs="1"
+                                                type="CR6Type" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="CR8"
+                                                name="CR8" minOccurs="0" maxOccurs="9"
+                                                type="CR8Type" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="CRC"
+                                                name="CRC" minOccurs="0" maxOccurs="100"
+                                                type="CRCType" />
+                                            <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="HI"
+                                                name="HI" minOccurs="0" maxOccurs="25" type="HIType" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="QTY"
+                                                name="QTY" minOccurs="0" maxOccurs="10"
+                                                type="QTYType" />
+                                            <xs:element dfdl:ref="SegmentFormat"
+                                                dfdl:initiator="HCP" name="HCP" minOccurs="0"
+                                                maxOccurs="1" type="HCPType" />
+                                        </xs:sequence>
+                                        <xs:element name="Loop2305" minOccurs="1" maxOccurs="6">
                                             <xs:complexType>
-                                                <xs:sequence>
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR7" name="CR7"
+                                                <xs:sequence dfdl:initiatedContent="yes">
+                                                    <xs:element dfdl:ref="SegmentFormat"
+                                                        dfdl:initiator="CR7" name="CR7"
                                                         minOccurs="1" maxOccurs="1" type="CR7Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="HSD" name="HSD"
+                                                    <xs:element dfdl:ref="SegmentFormat"
+                                                        dfdl:initiator="HSD" name="HSD"
                                                         minOccurs="0" maxOccurs="12" type="HSDType" />
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
                                         <xs:element name="Loop2310" minOccurs="0" maxOccurs="9">
                                             <xs:complexType>
-                                                <xs:sequence>
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="NM1" name="NM1"
+                                                <xs:sequence dfdl:initiatedContent="yes">
+                                                    <xs:element dfdl:ref="SegmentFormat"
+                                                        dfdl:initiator="NM1" name="NM1"
                                                         minOccurs="1" maxOccurs="1" type="NM1Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="PRV" name="PRV"
+                                                    <xs:element dfdl:ref="SegmentFormat"
+                                                        dfdl:initiator="PRV" name="PRV"
                                                         minOccurs="0" maxOccurs="1" type="PRVType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="N2" name="N2"
+                                                    <xs:element dfdl:ref="SegmentFormat"
+                                                        dfdl:initiator="N2" name="N2"
                                                         minOccurs="0" maxOccurs="2" type="N2Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="N3" name="N3"
+                                                    <xs:element dfdl:ref="SegmentFormat"
+                                                        dfdl:initiator="N3" name="N3"
                                                         minOccurs="0" maxOccurs="2" type="N3Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="N4" name="N4"
+                                                    <xs:element dfdl:ref="SegmentFormat"
+                                                        dfdl:initiator="N4" name="N4"
                                                         minOccurs="0" maxOccurs="1" type="N4Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="REF" name="REF"
+                                                    <xs:element dfdl:ref="SegmentFormat"
+                                                        dfdl:initiator="REF" name="REF"
                                                         minOccurs="0" maxOccurs="20" type="REFType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="PER" name="PER"
+                                                    <xs:element dfdl:ref="SegmentFormat"
+                                                        dfdl:initiator="PER" name="PER"
                                                         minOccurs="0" maxOccurs="2" type="PERType" />
                                                 </xs:sequence>
                                             </xs:complexType>
@@ -247,49 +305,78 @@
                                         <xs:element name="Loop2320" minOccurs="0" maxOccurs="10">
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SBR" name="SBR"
-                                                        minOccurs="1" maxOccurs="1" type="SBRType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CAS" name="CAS"
-                                                        minOccurs="0" maxOccurs="99" type="CASType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="RAS" name="RAS"
-                                                        minOccurs="0" maxOccurs="99" type="RASType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="AMT" name="AMT"
-                                                        minOccurs="0" maxOccurs="15" type="AMTType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="DMG" name="DMG"
-                                                        minOccurs="0" maxOccurs="1" type="DMGType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="DI" name="OI"
-                                                        minOccurs="0" maxOccurs="1" type="OIType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="MIA" name="MIA"
-                                                        minOccurs="0" maxOccurs="1" type="MIAType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="MOA" name="MOA"
-                                                        minOccurs="0" maxOccurs="1" type="MOAType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="HI" name="HI"
-                                                        minOccurs="0" maxOccurs="1" type="HIType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="LQ" name="LQ"
-                                                        minOccurs="0" maxOccurs="99" type="LQType" />
+                                                    <xs:sequence dfdl:initiatedContent="yes">
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="SBR" name="SBR"
+                                                            minOccurs="1" maxOccurs="1"
+                                                            type="SBRType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="CAS" name="CAS"
+                                                            minOccurs="0" maxOccurs="99"
+                                                            type="CASType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="RAS" name="RAS"
+                                                            minOccurs="0" maxOccurs="99"
+                                                            type="RASType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="AMT" name="AMT"
+                                                            minOccurs="0" maxOccurs="15"
+                                                            type="AMTType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="DMG" name="DMG"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="DMGType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="DI" name="OI"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="OIType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="MIA" name="MIA"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="MIAType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="MOA" name="MOA"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="MOAType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="HI" name="HI"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="HIType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="LQ" name="LQ"
+                                                            minOccurs="0" maxOccurs="99"
+                                                            type="LQType" />
+                                                    </xs:sequence>
                                                     <xs:element name="Loop2330" minOccurs="0"
                                                         maxOccurs="10">
                                                         <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="NM1"
+                                                            <xs:sequence dfdl:initiatedContent="yes">
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="NM1"
                                                                     name="MN1" minOccurs="1"
                                                                     maxOccurs="1" type="NM1Type" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="N2"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="N2"
                                                                     name="N2" minOccurs="0"
                                                                     maxOccurs="2" type="N2Type" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="N3"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="N3"
                                                                     name="N3" minOccurs="0"
                                                                     maxOccurs="2" type="N3Type" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="N4"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="N4"
                                                                     name="N4" minOccurs="0"
                                                                     maxOccurs="1" type="N4Type" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="PER"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="PER"
                                                                     name="PER" minOccurs="0"
                                                                     maxOccurs="2" type="PERType" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="DTP"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="DTP"
                                                                     name="DTP" minOccurs="0"
                                                                     maxOccurs="9" type="DTPType" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="REF"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="REF"
                                                                     name="REF" minOccurs="0"
                                                                     maxOccurs="99" type="REFType" />
                                                             </xs:sequence>
@@ -298,89 +385,154 @@
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="Loop2400" minOccurs="0"
+                                        <xs:element name="Loop2400" minOccurs="1"
                                             maxOccurs="unbounded">
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="LX" name="LX"
-                                                        minOccurs="1" maxOccurs="1" type="LXType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SV1" name="SV1"
-                                                        minOccurs="0" maxOccurs="1" type="SV1Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SV2" name="SV2"
-                                                        minOccurs="0" maxOccurs="1" type="SV2Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SV3" name="SV3"
-                                                        minOccurs="0" maxOccurs="1" type="SV3Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="TOO" name="TOO"
-                                                        minOccurs="0" maxOccurs="32" type="TOOType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SV4" name="SV4"
-                                                        minOccurs="0" maxOccurs="1" type="SV4Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SV5" name="SV5"
-                                                        minOccurs="0" maxOccurs="1" type="SV5Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SV6" name="SV6"
-                                                        minOccurs="0" maxOccurs="1" type="SV6Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SV7" name="SV7"
-                                                        minOccurs="0" maxOccurs="1" type="SV7Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="HI" name="HI"
-                                                        minOccurs="0" maxOccurs="25" type="HIType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="PWK" name="PWK"
-                                                        minOccurs="0" maxOccurs="10" type="PWKType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR1" name="CR1"
-                                                        minOccurs="0" maxOccurs="1" type="CR1Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR2" name="CR2"
-                                                        minOccurs="0" maxOccurs="5" type="CR2Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR3" name="CR3"
-                                                        minOccurs="0" maxOccurs="1" type="CR3Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR4" name="CR4"
-                                                        minOccurs="0" maxOccurs="3" type="CR4Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR5" name="CR5"
-                                                        minOccurs="0" maxOccurs="1" type="CR5Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CRC" name="CRC"
-                                                        minOccurs="0" maxOccurs="3" type="CRCType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="DTP" name="DTP"
-                                                        minOccurs="0" maxOccurs="15" type="DTPType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="QTY" name="QTY"
-                                                        minOccurs="0" maxOccurs="5" type="QTYType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="MEA" name="MEA"
-                                                        minOccurs="0" maxOccurs="20" type="MEAType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CN1" name="CN1"
-                                                        minOccurs="0" maxOccurs="1" type="CN1Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="REF" name="REF"
-                                                        minOccurs="0" maxOccurs="30" type="REFType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="AMT" name="AMT"
-                                                        minOccurs="0" maxOccurs="15" type="AMTType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="K3" name="K3"
-                                                        minOccurs="0" maxOccurs="10" type="K3Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="NTE" name="NTE"
-                                                        minOccurs="0" maxOccurs="10" type="NTEType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="PS1" name="PS1"
-                                                        minOccurs="0" maxOccurs="1" type="PS1Type" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="IMM" name="IMM"
-                                                        minOccurs="0" maxOccurs="unbounded"
-                                                        type="IMMType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="HSD" name="HSD"
-                                                        minOccurs="0" maxOccurs="1" type="HSDType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="HCP" name="HCP"
-                                                        minOccurs="0" maxOccurs="1" type="HCPType" />
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CR8" name="CR8"
-                                                        minOccurs="0" maxOccurs="unbounded"
-                                                        type="CR8Type" />
+                                                    <xs:sequence dfdl:initiatedContent="yes">
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="LX" name="LX"
+                                                            minOccurs="1" maxOccurs="1"
+                                                            type="LXType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="SV1" name="SV1"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="SV1Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="SV2" name="SV2"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="SV2Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="SV3" name="SV3"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="SV3Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="TOO" name="TOO"
+                                                            minOccurs="0" maxOccurs="32"
+                                                            type="TOOType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="SV4" name="SV4"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="SV4Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="SV5" name="SV5"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="SV5Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="SV6" name="SV6"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="SV6Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="SV7" name="SV7"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="SV7Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="HI" name="HI"
+                                                            minOccurs="0" maxOccurs="25"
+                                                            type="HIType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="PWK" name="PWK"
+                                                            minOccurs="0" maxOccurs="10"
+                                                            type="PWKType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="CR1" name="CR1"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="CR1Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="CR2" name="CR2"
+                                                            minOccurs="0" maxOccurs="5"
+                                                            type="CR2Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="CR3" name="CR3"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="CR3Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="CR4" name="CR4"
+                                                            minOccurs="0" maxOccurs="3"
+                                                            type="CR4Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="CR5" name="CR5"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="CR5Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="CRC" name="CRC"
+                                                            minOccurs="0" maxOccurs="3"
+                                                            type="CRCType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="DTP" name="DTP"
+                                                            minOccurs="0" maxOccurs="15"
+                                                            type="DTPType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="QTY" name="QTY"
+                                                            minOccurs="0" maxOccurs="5"
+                                                            type="QTYType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="MEA" name="MEA"
+                                                            minOccurs="0" maxOccurs="20"
+                                                            type="MEAType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="CN1" name="CN1"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="CN1Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="REF" name="REF"
+                                                            minOccurs="0" maxOccurs="30"
+                                                            type="REFType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="AMT" name="AMT"
+                                                            minOccurs="0" maxOccurs="15"
+                                                            type="AMTType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="K3" name="K3"
+                                                            minOccurs="0" maxOccurs="10"
+                                                            type="K3Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="NTE" name="NTE"
+                                                            minOccurs="0" maxOccurs="10"
+                                                            type="NTEType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="PS1" name="PS1"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="PS1Type" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="IMM" name="IMM"
+                                                            minOccurs="0" maxOccurs="unbounded"
+                                                            type="IMMType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="HSD" name="HSD"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="HSDType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="HCP" name="HCP"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="HCPType" />
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="CR8" name="CR8"
+                                                            minOccurs="0" maxOccurs="unbounded"
+                                                            type="CR8Type" />
+                                                    </xs:sequence>
                                                     <xs:element name="Loop2410" minOccurs="0"
                                                         maxOccurs="unbounded">
                                                         <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="LIN"
+                                                            <xs:sequence dfdl:initiatedContent="yes">
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="LIN"
                                                                     name="LIN" minOccurs="1"
                                                                     maxOccurs="1" type="LINType" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CTP"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="CTP"
                                                                     name="CTP" minOccurs="0"
                                                                     maxOccurs="1" type="CTPType" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="REF"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="REF"
                                                                     name="REF" minOccurs="0"
                                                                     maxOccurs="1" type="REFType" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SV4"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="SV4"
                                                                     name="SV4" minOccurs="0"
                                                                     maxOccurs="1" type="SV4Type" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SV7"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="SV7"
                                                                     name="SV7" minOccurs="0"
                                                                     maxOccurs="1" type="SV7Type" />
                                                             </xs:sequence>
@@ -389,26 +541,33 @@
                                                     <xs:element name="Loop2420" minOccurs="0"
                                                         maxOccurs="10">
                                                         <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="NM1"
+                                                            <xs:sequence dfdl:initiatedContent="yes">
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="NM1"
                                                                     name="NM1" minOccurs="1"
                                                                     maxOccurs="1" type="NM1Type" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="PRV"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="PRV"
                                                                     name="PRV" minOccurs="0"
                                                                     maxOccurs="1" type="PRVType" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="N2"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="N2"
                                                                     name="N2" minOccurs="0"
                                                                     maxOccurs="2" type="N2Type" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="N3"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="N3"
                                                                     name="N3" minOccurs="0"
                                                                     maxOccurs="2" type="N3Type" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="N4"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="N4"
                                                                     name="N4" minOccurs="0"
                                                                     maxOccurs="1" type="N4Type" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="REF"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="REF"
                                                                     name="REF" minOccurs="0"
                                                                     maxOccurs="20" type="REFType" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="PER"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="PER"
                                                                     name="PER" minOccurs="0"
                                                                     maxOccurs="2" type="PERType" />
                                                             </xs:sequence>
@@ -417,49 +576,64 @@
                                                     <xs:element name="Loop2430" minOccurs="0"
                                                         maxOccurs="unbounded">
                                                         <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SVD"
+                                                            <xs:sequence dfdl:initiatedContent="yes">
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="SVD"
                                                                     name="SVD" minOccurs="1"
                                                                     maxOccurs="1" type="SVDType" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="CAS"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="CAS"
                                                                     name="CAS" minOccurs="0"
                                                                     maxOccurs="99" type="CASType" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="RAS"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="RAS"
                                                                     name="RAS" minOccurs="0"
                                                                     maxOccurs="99" type="RASType" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="DTP"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="DTP"
                                                                     name="DTP" minOccurs="0"
                                                                     maxOccurs="9" type="DTPType" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="AMT"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="AMT"
                                                                     name="AMT" minOccurs="0"
                                                                     maxOccurs="20" type="AMTType" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="LQ"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="LQ"
                                                                     name="LQ" minOccurs="0"
                                                                     maxOccurs="99" type="LQType" />
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="LS" name="LS"
-                                                        minOccurs="0" maxOccurs="1" type="LSType" />
+                                                    <xs:sequence dfdl:initiatedContent="yes">
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="LS" name="LS"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="LSType" />
+                                                    </xs:sequence>
                                                     <xs:element name="Loop2440" minOccurs="0"
                                                         maxOccurs="unbounded">
                                                         <xs:complexType>
-                                                            <xs:sequence>
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="LQ"
+                                                            <xs:sequence dfdl:initiatedContent="yes">
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="LQ"
                                                                     name="LQ" minOccurs="1"
                                                                     maxOccurs="1" type="LQType" />
-                                                                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="FRM"
+                                                                <xs:element dfdl:ref="SegmentFormat"
+                                                                    dfdl:initiator="FRM"
                                                                     name="FRM" minOccurs="1"
                                                                     maxOccurs="99" type="FRMType" />
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
-                                                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="LE" name="LE"
-                                                        minOccurs="0" maxOccurs="1" type="LEType" />
+                                                    <xs:sequence dfdl:initiatedContent="yes">
+                                                        <xs:element dfdl:ref="SegmentFormat"
+                                                            dfdl:initiator="LE" name="LE"
+                                                            minOccurs="0" maxOccurs="1"
+                                                            type="LEType" />
+                                                    </xs:sequence>
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
-
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
@@ -468,9 +642,11 @@
                 </xs:element>
 
                 <!-- Trailer -->
-                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SE" name="SE" type="SEType" />
-                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="GE" name="GE" type="GEType" />
-                <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="IEA" name="IEA" type="IEAType" />
+                <xs:sequence dfdl:initiatedContent="yes">
+                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="SE" name="SE" type="SEType" />
+                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="GE" name="GE" type="GEType" />
+                    <xs:element dfdl:ref="SegmentFormat" dfdl:initiator="IEA" name="IEA" type="IEAType" />
+                </xs:sequence>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -889,72 +1065,72 @@
     <!-- Element Types, mostly composite elements -->
     <xs:complexType name="C003Type">
         <xs:sequence dfdl:ref="CompositeSequenceFormat">
-            <xs:element name="E01" type="xs:string" minOccurs="1" maxOccurs="1" />
-            <xs:element name="E02" type="xs:string" minOccurs="1" maxOccurs="1" />
-            <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E04" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E05" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E06" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E07" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E08" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E09" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E10" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E11" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E12" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C003-01" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="C003-02" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="C003-03" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C003-04" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C003-05" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C003-06" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C003-07" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C003-08" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C003-09" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C003-10" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C003-11" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C003-12" type="xs:string" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="C022Type">
         <xs:sequence dfdl:ref="CompositeSequenceFormat">
-            <xs:element name="E01" type="xs:string" minOccurs="1" maxOccurs="1" />
-            <xs:element name="E02" type="xs:string" minOccurs="1" maxOccurs="1" />
-            <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E04" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E05" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E06" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E07" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E08" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E09" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E10" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C022-01" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="C022-02" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="C022-03" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C022-04" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C022-05" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C022-06" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C022-07" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C022-08" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C022-09" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C022-10" type="xs:string" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="C023Type">
         <xs:sequence dfdl:ref="CompositeSequenceFormat">
-            <xs:element name="E01" type="xs:string" minOccurs="1" maxOccurs="1" />
-            <xs:element name="E02" type="xs:string" minOccurs="1" maxOccurs="1" />
-            <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C023-01" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="C023-02" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="C023-03" type="xs:string" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="C024Type">
         <xs:sequence dfdl:ref="CompositeSequenceFormat">
-            <xs:element name="E01" type="xs:string" minOccurs="1" maxOccurs="1" />
-            <xs:element name="E02" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E04" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E05" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C024-01" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="C024-02" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C024-03" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C024-04" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C024-05" type="xs:string" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="C035Type">
         <xs:sequence dfdl:ref="CompositeSequenceFormat">
-            <xs:element name="E01" type="xs:string" minOccurs="1" maxOccurs="1" />
-            <xs:element name="E02" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C035-01" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="C035-02" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C035-03" type="xs:string" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="C040Type">
         <xs:sequence dfdl:ref="CompositeSequenceFormat">
-            <xs:element name="E01" type="xs:string" minOccurs="1" maxOccurs="1" />
-            <xs:element name="E02" type="xs:string" minOccurs="1" maxOccurs="1" />
-            <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E04" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E05" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E06" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C040-01" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="C040-02" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="C040-03" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C040-04" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C040-05" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C040-06" type="xs:string" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="C056Type">
         <xs:sequence dfdl:ref="CompositeSequenceFormat">
-            <xs:element name="E01" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E02" type="xs:string" minOccurs="0" maxOccurs="1" />
-            <xs:element name="E03" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C056-01" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C056-02" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="C056-03" type="xs:string" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
 </xs:schema>
