@@ -9,7 +9,7 @@
                 defaultValue="*" name="FieldSeparator" type="xs:string" />
             <!-- ISA-16 is supposed to override this -->
             <dfdl:defineVariable
-                defaultValue=">" name="CompositeSeparator" type="xs:string" />
+                defaultValue=":" name="CompositeSeparator" type="xs:string" />
             <dfdl:defineVariable
                 defaultValue="." name="DecimalSeparator" type="xs:string" />
             <dfdl:format
@@ -77,12 +77,12 @@
             <dfdl:defineFormat
                 name="SegmentSequenceFormat">
                 <dfdl:format terminator="" separator="{$FieldSeparator}" separatorPosition="prefix"
-                    separatorPolicy="suppressedAtEndLax" />
+                    />
             </dfdl:defineFormat>
             <dfdl:defineFormat
                 name="CompositeSequenceFormat">
                 <dfdl:format terminator="" separator="{$CompositeSeparator}"
-                    separatorPosition="infix" separatorPolicy="suppressedAtEndLax" />
+                    separatorPosition="infix" />
             </dfdl:defineFormat>
         </xs:appinfo>
     </xs:annotation>
@@ -263,7 +263,7 @@
                                                 dfdl:initiator="HCP" name="HCP" minOccurs="0"
                                                 maxOccurs="1" type="HCPType" />
                                         </xs:sequence>
-                                        <xs:element name="Loop2305" minOccurs="1" maxOccurs="6">
+                                        <xs:element name="Loop2305" minOccurs="0" maxOccurs="6">
                                             <xs:complexType>
                                                 <xs:sequence dfdl:initiatedContent="yes">
                                                     <xs:element dfdl:ref="SegmentFormat"
@@ -385,7 +385,7 @@
                                                 </xs:sequence>
                                             </xs:complexType>
                                         </xs:element>
-                                        <xs:element name="Loop2400" minOccurs="1"
+                                        <xs:element name="Loop2400" minOccurs="0"
                                             maxOccurs="unbounded">
                                             <xs:complexType>
                                                 <xs:sequence>
@@ -845,7 +845,7 @@
             <xs:element name="ISA-16" type="xs:string" minOccurs="1" maxOccurs="1">
                 <xs:annotation>
                     <xs:appinfo source="http://www.ogf.org/dfdl/">
-                        <dfdl:setVariable ref="CompositeSeparator" value="." />
+                        <dfdl:setVariable ref="CompositeSeparator" value="{.}" />
                     </xs:appinfo>
                 </xs:annotation>
             </xs:element>

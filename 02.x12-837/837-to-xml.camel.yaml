@@ -15,4 +15,5 @@
             uri: smooks
             parameters:
               smooksConfig: 837-to-xml-smooks-config.xml
-        - log: ${body}
+        - log:
+            message: ${prettyBody}
