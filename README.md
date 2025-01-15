@@ -64,10 +64,10 @@ This route flows as following:
 1. Every 3 seconds, execute this route
 2. Reads [X12 837P text input](02.x12-837/837-to-xml-input-message.edi) into the body
 3. Transforms X12 837P input to the XML using Smooks DFDL
-4. **Perform data mappings with Kaoto DataMapper**
+4. **Perform data mappings with Kaoto DataMapper** and create a `Message837` XML out of X12 837P XML
 5. Prints the outcome
 
-This route is almost same with the previous 837-to-xml route. The only difference is the step 4, Kaoto DataMapper. The XML structure from Smooks DFDL output is described by the [DFDL schema file](02.x12-837/X12-837P.dfdl.xsd). We can attach the DFDL schema file directly as a Source Document schema. Also we created an [example XML schema](02.x12-837/Message837.xsd) to describe the output XML structure, and attached as a Target Document schema.
+This route is almost same with the previous 837-to-xml route. The only difference is the step 4, Kaoto DataMapper. The XML structure from Smooks DFDL output is described by the [DFDL schema file](02.x12-837/X12-837P.dfdl.xsd). We can attach the DFDL schema file directly as a Source Document schema. Also we created an [Message837 example XML schema](02.x12-837/Message837.xsd) to describe the output XML structure, and attached as a Target Document schema. This data mappings create the final `Message837` XML out of X12 837P XML.
 
 We created an example data mappings as following:
 ![DataMapper: Headers](images/datamapper-headers.png)
