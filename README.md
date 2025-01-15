@@ -2,7 +2,7 @@
 
 The purpose of this PoC is to demonstrate reading and writing X12 837 EDI message in Camel Route with using Smooks DFDL support, as well as letting Kaoto DataMapper participate in.
 
-The most important piece in this PoC is the [DFDL schema file](02.x12-837/X12-837P.dfdl.xsd) which describes the ruleset for transforming between EDI data and XML. Since DFDL is just an **annotated XML schema**, once it's defined appropriately, it can be directly attached as a **Kaoto DataMapper Document schema**, and perform visual data mapping from that point. 
+The most important piece in this PoC is the [DFDL (Data Format Definition Language) schema file](02.x12-837/X12-837P.dfdl.xsd) which describes the ruleset for transforming between EDI data and XML. Since DFDL is just an **annotated XML schema**, once it's defined appropriately, it can be directly attached as a **Kaoto DataMapper Document schema**, and perform visual data mapping from that point. 
 
 In this PoC, we only created [an example schema for X12 837P](02.x12-837/X12-837P.dfdl.xsd). We hope this PoC help you to start creating a real world solution for your X12 837P use case, handle other X12 transaction sets and even other standards such as EDIFACT in a similar way. 
 
