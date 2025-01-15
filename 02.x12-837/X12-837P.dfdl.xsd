@@ -4,7 +4,7 @@
 
     <xs:annotation>
         <xs:appinfo source="http://www.ogf.org/dfdl/">
-            <dfdl:defineVariable defaultValue="~ ~%NL;" name="SegmentTerminator" type="xs:string" />
+            <dfdl:defineVariable defaultValue="~%NL; ~" name="SegmentTerminator" type="xs:string" />
             <dfdl:defineVariable
                 defaultValue="*" name="FieldSeparator" type="xs:string" />
             <!-- ISA-16 is supposed to override this -->
@@ -26,7 +26,7 @@
                 textBooleanJustification="left"
                 sequenceKind="ordered"
                 choiceLengthKind="implicit"
-                separator="" separatorPolicy="suppressed" separatorPosition="infix"
+                separator="" separatorSuppressionPolicy="trailingEmpty" separatorPosition="infix"
                 initiator=""
                 terminator=""
                 documentFinalTerminatorCanBeMissing="no"

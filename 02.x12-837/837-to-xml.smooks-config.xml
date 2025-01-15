@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<smooks-resource-list
+        xmlns="https://www.smooks.org/xsd/smooks-2.0.xsd"
+        xmlns:dfdl="https://www.smooks.org/xsd/smooks/dfdl-1.0.xsd">
+
+    <!-- Configure the EDI Reader to process the message stream into a stream of SAX events. -->
+    <dfdl:parser schemaUri="/X12-837P.dfdl.xsd"/>
+</smooks-resource-list>

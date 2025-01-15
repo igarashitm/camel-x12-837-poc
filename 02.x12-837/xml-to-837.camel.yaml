@@ -15,5 +15,5 @@
             id: to-1712
             uri: smooks
             parameters:
-              smooksConfig: xml-to-837-smooks-config.xml
+              smooksConfig: xml-to-837.smooks-config.xml
         - log: ${body}

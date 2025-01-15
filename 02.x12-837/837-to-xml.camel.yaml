@@ -14,6 +14,6 @@
             id: to-4240
             uri: smooks
             parameters:
-              smooksConfig: 837-to-xml-smooks-config.xml
+              smooksConfig: 837-to-xml.smooks-config.xml
         - log:
-            message: ${prettyBody}
+            message: ${body}
