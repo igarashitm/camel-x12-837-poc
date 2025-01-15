@@ -1,5 +1,5 @@
 - route:
-    id: xml-to-edi
+    id: xml-to-837
     from:
       uri: timer
       parameters:

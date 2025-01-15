@@ -1,5 +1,5 @@
 - route:
-    id: 837-to-xml
+    id: route-6924
     from:
       uri: timer
       parameters:
@@ -11,9 +11,15 @@
               constant:
                 expression: resource:classpath:837-to-xml-input-message.edi
         - to:
-            id: to-4240
+            id: to-5261
             uri: smooks
             parameters:
               smooksConfig: 837-to-xml.smooks-config.xml
-        - log:
-            message: ${body}
+        - step:
+            id: kaoto-datamapper-2df1aa0e
+            steps:
+              - to:
+                  id: kaoto-datamapper-xslt-3117
+                  uri: xslt-saxon:kaoto-datamapper-2df1aa0e.xsl
+                  parameters: {}
+        - log: ${body}

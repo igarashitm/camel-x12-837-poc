@@ -1,0 +1,18 @@
+{
+	"kaoto-datamapper-2df1aa0e": {
+		"sourceBody": {
+			"type": "XML Schema",
+			"filePath": [
+				"X12-837P.dfdl.xsd"
+			]
+		},
+		"sourceParameters": {},
+		"targetBody": {
+			"type": "XML Schema",
+			"filePath": [
+				"Message837.xsd"
+			]
+		},
+		"xsltPath": "kaoto-datamapper-2df1aa0e.xsl"
+	}
+}
