@@ -33,14 +33,16 @@ Here we have 3 separate camel routes:
 This route flows as following:
 1. Every 3 seconds, execute this route
 2. Reads [X12 837P text input](02.x12-837/837-to-xml-input-message.edi) into the body
-3. Transforms X12 837P input to the XML using Smooks DFDL
+3. Transform X12 837P input to the XML using DFDL data format (unmarshal)
 4. Prints the outcome
 
-In the [Smooks config file](02.x12-837/837-to-xml.smooks-config.xml), the [DFDL schema file](02.x12-837/X12-837P.dfdl.xsd) is specified for the transformation. This DFDL schema file is the most important piece in this PoC, and also the most time taking part to create this PoC. The Daffodil Visual Studio Code extension helped a lot to debug the file and make it work.
+Note that the [DFDL schema file](02.x12-837/X12-837P.dfdl.xsd) is specified on `unmarshal` step for the transformation. This DFDL schema file
+is the most important piece in this PoC, and also the most time taking part to create this PoC. The Daffodil
+Visual Studio Code extension helped a lot to debug the file and make it work.
 
 To run this route using Camel JBang (assuming the CWD is [02.x12-837](02.x12-837)):
 ```
-camel run --dep=org.smooks.cartridges:smooks-dfdl-cartridge:1.0.1 X12-837P.dfdl.xsd 837-to-xml*
+camel run X12-837P.dfdl.xsd 837-to-xml*
 ```
 The expected output is same as the [input XML file for xml-to-837 route](02.x12-837/xml-to-837-input-message.xml)
 
@@ -49,14 +51,15 @@ The expected output is same as the [input XML file for xml-to-837 route](02.x12-
 This route flows as following:
 1. Every 3 seconds, execute this route
 2. Reads [XML input](02.x12-837/xml-to-837-input-message.xml) into the body
-3. Transform XML input to the X12 837P text using Smooks DFDL
+3. Transform XML input to the X12 837P text using DFDL data format (marshal)
 4. Prints the outcome
 
-Note that the [Smooks config file](02.x12-837/xml-to-837.smooks-config.xml) specifies the same [DFDL schema file](02.x12-837/X12-837P.dfdl.xsd) with the previous 837-to-xml route. Once it's defined appropriately, The DFDL schema works for both direction.
+Note that on `marshal` step, the same [DFDL schema file](02.x12-837/X12-837P.dfdl.xsd) is specified with the previous
+837-to-xml route. Once the DFDL schema is defined appropriately, it works for both direction.
 
 To run this route using Camel JBang (assuming the CWD is [02.x12-837](02.x12-837)):
 ```
-camel run --dep=org.smooks.cartridges:smooks-dfdl-cartridge:1.0.1 X12-837P.dfdl.xsd xml-to-837*
+camel run X12-837P.dfdl.xsd xml-to-837*
 ```
 The expected output is same as the [X12 837P text input file](02.x12-837/837-to-xml-input-message.edi)
 
@@ -65,11 +68,15 @@ The expected output is same as the [X12 837P text input file](02.x12-837/837-to-
 This route flows as following:
 1. Every 3 seconds, execute this route
 2. Reads [X12 837P text input](02.x12-837/837-to-xml-input-message.edi) into the body
-3. Transforms X12 837P input to the XML using Smooks DFDL
+3. Transforms X12 837P input to the XML using DFDL data format
 4. **Perform data mappings with Kaoto DataMapper** and create a `Message837` XML out of X12 837P XML
 5. Prints the outcome
 
-This route is almost same with the previous 837-to-xml route. The only difference is the step 4, Kaoto DataMapper. The XML structure from Smooks DFDL output is described by the [DFDL schema file](02.x12-837/X12-837P.dfdl.xsd). We can attach the DFDL schema file directly as a Source Document schema. Also we created an [Message837 example XML schema](02.x12-837/Message837.xsd) to describe the output XML structure, and attached as a Target Document schema. This data mappings create the final `Message837` XML out of X12 837P XML.
+This route is almost same with the previous 837-to-xml route. The only difference is the step 4, Kaoto DataMapper.
+The XML structure from DFDL unmarshal output is described by the [DFDL schema file](02.x12-837/X12-837P.dfdl.xsd). We can attach the DFDL schema
+file directly as a Source Document schema in Kaoto DataMapper UI. Also we created
+a [Message837 example XML schema](02.x12-837/Message837.xsd) to describe the output XML structure, and attached as a Target Document schema.
+This data mappings create the final `Message837` XML out of X12 837P XML.
 
 We created an example data mappings as following:
 ![DataMapper: Headers](images/datamapper-headers.png)
@@ -78,11 +85,9 @@ We created an example data mappings as following:
 
 To run this route using Camel JBang (assuming the CWD is [02.x12-837](02.x12-837)):
 ```
-camel run --dep=org.smooks.cartridges:smooks-dfdl-cartridge:1.0.1 \
-    X12-837P.dfdl.xsd \
+camel run  X12-837P.dfdl.xsd \
     x12-837-datamapper.camel.yaml \
     837-to-xml-input-message.edi \
-    837-to-xml.smooks-config.xml \
     kaoto-datamapper-2df1aa0e.xsl
 ```
 Here is the expected XML output
@@ -113,10 +118,16 @@ Here is the expected XML output
 - [Example: X12 837 - Health Care Claim: Professional - Commercial Health Insurance](https://x12.org/examples/005010x222/example-01-commercial-health-insurance) The example input message used in this PoC was created from this official example, wrapped with dummy `ISA`, `GS`, `GE` and `IEA` segments.
 - [01.camel-smooks-edi-xml-example](01.camel-smooks-edi-xml-example)
 Just a reference. it was copied from Smooks official example and wrapped into camel route. It is using EDIFACT common object. This was a starting point of this PoC.
-- [Camel Smooks](https://camel.apache.org/components/next/smooks-component.html)
-The Camel component to use Smooks
+- [Camel DFDL data format](https://camel.apache.org/components/next/dataformats/dfdl-dataformat.html)
+  The Camel data format to use DFDL
+- [Camel DFDL component](https://camel.apache.org/components/next/dfdl-component.html)
+  The Camel component to use DFDL
 - [Apache Daffodil](https://daffodil.apache.org/)
 The DFDL (Data Format Description Language) implementation. Smooks DFDL cartridge leverages Apache Daffodil underneath.
+- [03.X12-837-smooks](03.x12-837-smooks)
+  The old PoC using camel-smooks component. This was done before camel-dfdl component and data format were added.
+- [Camel Smooks](https://camel.apache.org/components/next/smooks-component.html)
+  The Camel component to use Smooks
 
 
 ## TODO
@@ -130,4 +141,4 @@ The DFDL (Data Format Description Language) implementation. Smooks DFDL cartridg
 - [x] Make sure it runs and prints the log as expected. In theory the created DFDL schema should work for the other way as well, i.e. xml-to-837
 - [x] Add DataMapper, so not only just convert between X12 837 and XML, but also demonstrate to read/write from/to a different data shape
 - [x] Verify it runs and prints the log as expected
-
+- [x] Update to use camel-dfdl component

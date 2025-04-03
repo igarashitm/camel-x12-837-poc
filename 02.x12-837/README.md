@@ -1,15 +1,25 @@
+#### EDI to XML
 ```
-camel run --dep=org.smooks.cartridges:smooks-dfdl-cartridge:1.0.1 X12-837P* 837-to-xml*
+camel run X12-837P* 837-to-xml*
 ```
 
 or
 
+#### XML to EDI
 ```
-camel run --dep=org.smooks.cartridges:smooks-dfdl-cartridge:1.0.1 X12-837P* xml-to-837*
+camel run X12-837P* xml-to-837*
 ```
 
+or
+
+#### EDI to XML + Kaoto DataMapper
+```
+camel run X12-837P.dfdl.xsd x12-837-datamapper.camel.yaml kaoto-datamapper-2df1aa0e.xsl 837-to-xml-input-message.edi
+```
+
+#### misc   
 
 Also possible to raise log level and/or enable JVM debugger for debugging purpose, for example
 ```
-camel run --dep=org.smooks.cartridges:smooks-dfdl-cartridge:1.0.1 X12-837P* 837-to-xml* --logging-category=org.apache.daffodil=DEBUG --jvm-debug
+camel run X12-837P* 837-to-xml* --logging-category=org.apache.daffodil=DEBUG --jvm-debug
 ```

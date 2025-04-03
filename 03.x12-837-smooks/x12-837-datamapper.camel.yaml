@@ -10,9 +10,11 @@
             expression:
               constant:
                 expression: resource:classpath:837-to-xml-input-message.edi
-        - unmarshal:
-            dfdl:
-              schemaUri: X12-837P.dfdl.xsd
+        - to:
+            id: to-5261
+            uri: smooks
+            parameters:
+              smooksConfig: 837-to-xml.smooks-config.xml
         - step:
             id: kaoto-datamapper-2df1aa0e
             steps:
